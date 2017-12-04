@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="On-demand Cert testing">
+    <listeners>
+        <listener class-name="capm.ScreenshotListener"/>
+    </listeners>
+
+    <!-- Global parameters -->
+    <!-- Driver parameter values: "Firefox", "Chrome", "IE"  -->
+    <!-- Driver parameter values: "RemoteFirefox", "RemoteChrome", "IE"  -->
+    <parameter name="Driver" value="Firefox"/>
+    <parameter name="RemoteDriverURL" value="http://10.242.23.195:4444/wd/hub"/>
+
+
+    <!-- REGRESSION -->
+
+    <!--<test name="Add datasource _ rimse01-pc3 (CAPM 3.2)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc3:8181" />-->
+        <!--<parameter name="dataAggregator" value="rimse01-da3" />-->
+        <!--<groups> <run>-->
+            <!--<include name="AddDataAggregator"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
+
+    <test name="Assign Data Collector _ rimse01-pc32 (CAPM 3.2)">
+        <parameter name="capcServer" value="http://rimse01-pc32.bluesky.ca.com:8181" />
+        <groups> <run>
+            <include name="AssignDataCollector"/>
+        </run></groups>
+        <classes> <class name="capm.TestCase2" /> </classes>
+    </test>
+
+
+
+    <!--<test name="Search test _ rimse01-pc3 (CAPM 3.2)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc2:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="Regression: SearchTest"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
+
+
+</suite>

@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="On-demand Cert testing">
+    <listeners>
+        <listener class-name="capm.ScreenshotListener"/>
+    </listeners>
+
+    <!-- Global parameters -->
+    <parameter name="logLevel" value="DEBUG"/>
+    <!-- Driver parameter values: "Firefox", "Chrome", "IE" OR "RemoteFirefox", "RemoteChrome"  -->
+    <parameter name="Driver" value="Firefox"/>
+    <!--<parameter name="RemoteDriverURL" value="http://10.242.35.122:4444/wd/hub"/>-->
+    <parameter name="RemoteDriverURL" value="http://10.162.5.194:4444/wd/hub"/>
+
+
+    <!-- NEWLY ADDED VC US -->
+
+    <!-- PRE steps -->
+    <!-- Parameter "simIDs" format: "zone:id1,zone:id2", for example "public:12345" or "portsmouth:12345"/>  -->
+
+    <!-- =================================================== -->
+    <!--CHANGE VENDOR PRIORITY GROUPING -->
+    <!-- =================================================== -->
+
+
+    <!--<parameter name="priorityFile" value="d:\CAPM\Priority.txt" />-->
+
+    <!--<test name="Add Vendor Priority Grouping _rimse01-pc1 (CAPM 3.1)">-->
+ 	<!--<parameter name="daServer" value="rimse01-da1" />-->
+ 	<!--<groups> <run>-->
+        	<!--<include name="AddVendorPriorityGrouping"/>-->
+    <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase3" /> </classes>-->
+    <!--</test>-->
+
+
+    <!--<parameter name="priorityFile" value="d:\CAPM\Priority.txt" />-->
+    <!--<test name="Add Vendor Priority Grouping _rimse01-pc2 (CAPM 3.0)">-->
+    <!--<parameter name="daServer" value="rimse01-da2" />-->
+    <!--<groups> <run>-->
+        <!--<include name="AddVendorPriorityGrouping"/>-->
+    <!--</run></groups>-->
+            <!--<classes> <class name="capm.TestCase3" /> </classes>-->
+    <!--</test>-->
+
+
+    <!-- =================================================== -->
+    <!-- CHANGE VENDOR PRIORITY, CREATE MONITORING AND DISCOVER PROFILES -->
+    <!-- =================================================== -->
+
+
+    <!--<parameter name="simIDs" value="portsmouth:29656" />-->
+    <!--<parameter name="readmeFile" value="d:\CAPM\readme.txt" />-->
+    <!--<parameter name="MonitoringDiscoveryProfileName" value="QA2" />-->
+
+    <!--<test name="Create/Modify Monitoring Profile For Already Certified US">-->
+       <!--<parameter name="capcServer" value="http://rimse01-pc1:8181" />-->
+       <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt" />-->
+       <!--<parameter name="MonitoringDiscoveryProfileName" value="QA2_certified" />-->
+       <!--<groups> <run>-->
+            <!--<include name="CreateModifyMPAlreadyCertified"/>-->
+        <!--</run></groups>-->
+       <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+     <!--</test>-->
+
+    <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile _rimse01-pc1 (CAPM 3.1)">-->
+         <!--<parameter name="capcServer" value="http://rimse01-pc1:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="CreateModifyMP"/>-->
+            <!--<include name="ChangeVP"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
+
+    <!--<test name="Create/Modify Discovery Profile _rimse01-pc1 (CAPM 3.1)">-->
+         <!--<parameter name="capcServer" value="http://rimse01-pc1:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="CreateModifyDP"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
+
+
+    <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile _rimse01-pc2 (CAPM 3.0)">-->
+         <!--<parameter name="capcServer" value="http://rimse01-pc2:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="ChangeVP"/>-->
+            <!--<include name="CreateModifyMP"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
+
+    <!--<test name="Create/Modify Discovery Profile _rimse01-pc2 (CAPM 3.0)">-->
+         <!--<parameter name="capcServer" value="http://rimse01-pc2:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="CreateModifyDP"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+     <!--</test>-->
+
+
+     <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile _rimse01-pc3 (CAPM 3.2)">-->
+         <!--<parameter name="capcServer" value="http://rimse01-pc3:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="ChangeVP"/>-->
+            <!--<include name="CreateModifyMP"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+     <!--</test>-->
+
+    <!--<test name="Create/Modify Discovery Profile _rimse01-pc3 (CAPM 3.2)">-->
+         <!--<parameter name="capcServer" value="http://rimse01-pc3:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="CreateModifyDP"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+     <!--</test>-->
+
+
+    <!-- =================================================== -->
+    <!-- CREATE REPORTS -->
+    <!-- =================================================== -->
+
+    <!-- reportType parameter values: "legacy" or "device" -->
+
+
+    <parameter name="deviceName" value="Sim29656" />
+    <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
+    <parameter name="reportType" value="Legacy" />
+    <parameter name="outputDir" value="d:\Automation" />
+
+    <test name="Verify VCs and components For Already Certified US">
+       <parameter name="capcServer" value="http://rimse01-pc1:8181" />
+       <parameter name="readmeFile" value="d:\CAPM\mf.txt" />
+       <parameter name="outputDir" value="d:\Automation" />
+       <groups> <run>
+            <include name="VerifyVCandComponentsAlreadyCertified"/>
+        </run></groups>
+       <classes> <class name="capm.TestCase2" /> </classes>
+     </test>
+
+
+    <test name="Create custom report _ rimse01-pc1 (CAPM 3.1)">
+        <parameter name="capcServer" value="http://rimse01-pc1:8181" />
+        <parameter name="daServer" value="rimse01-da1" />
+           <parameter name="daPassword" value="???.qaperf184" />
+        <groups> <run>
+            <include name="CreateCustomReport"/>
+        </run></groups>
+        <classes> <class name="capm.TestCase2" /> </classes>
+    </test>
+
+
+    <!--<test name="Create custom report _ rimse01-pc2 (CAPM 3.0)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc2:8181" />-->
+        <!--<parameter name="daServer" value="rimse01-da2" />-->
+          <!--<parameter name="daPassword" value="???.qaperf184" />-->
+           <!--<groups> <run>-->
+            <!--<include name="CreateCustomReport"/>-->
+        <!--</run></groups>-->
+           <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
+
+
+    <!--<test name="Create custom report _ rimse01-pc3 (CAPM 3.2)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc3:8181" />-->
+        <!--<parameter name="daServer" value="rimse01-da3" />-->
+           <!--<parameter name="daPassword" value="???.qaperf184" />-->
+           <!--<groups> <run>-->
+            <!--<include name="CreateCustomReport"/>-->
+        <!--</run></groups>-->
+           <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
+
+
+
+    <!-- POST steps -->
+    <!-- =================================================== -->
+    <!-- DELETE DISCOVERED DEVICES -->
+    <!-- =================================================== -->
+
+
+        <!--<test name="Delete Discovered Devices _rimse01-pc1 (CAPM 3.1)">-->
+             <!--<parameter name="capcServer" value="http://rimse01-pc1:8181" />-->
+            <!--<groups> <run>-->
+                <!--<include name="DeleteDiscoveredDevices"/>-->
+            <!--</run></groups>-->
+            <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+         <!--</test>-->
+
+         <!--<test name="Delete Discovered Devices _rimse01-pc2 (CAPM 3.0)">-->
+             <!--<parameter name="capcServer" value="http://rimse01-pc2:8181" />-->
+            <!--<groups> <run>-->
+                <!--<include name="DeleteDiscoveredDevices"/>-->
+            <!--</run></groups>-->
+            <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+         <!--</test>-->
+
+         <!--<test name="Delete Discovered Devices _rimse01-pc3 (CAPM 3.2)">-->
+             <!--<parameter name="capcServer" value="http://rimse01-pc3:8181" />-->
+            <!--<groups> <run>-->
+                <!--<include name="DeleteDiscoveredDevices"/>-->
+            <!--</run></groups>-->
+            <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+         <!--</test>-->
+
+</suite>
