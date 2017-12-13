@@ -11,14 +11,20 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class CreateReport {
 	private static final Logger log = LogManager.getLogger("CreateReport");
 	WebDriver driver;
+	Wait<WebDriver> wait;
+
 	public CreateReport (WebDriver driver) {
 
 		this.driver = driver;
+		wait = new WebDriverWait(driver,10, 200).withMessage("ExpectedConditions timeout.");
 	}
 	
 	public Boolean createCustomTab(String deviceName, int metricType, String tabName, ArrayList<String> metrics, String element, String outputDir, String reportType) throws InterruptedException, Exception {
@@ -182,7 +188,9 @@ public class CreateReport {
 					navi.protectedClick("//table[contains(@id,'ext')]/tbody/tr[2]/td[2]/em/button[text()='Save']", "Unable to click Save button. Retrying.");
 
 					Thread.sleep(500);
-					navi.waitForElement("//div[contains(text(),'Wait')]",2);
+					//navi.waitForElement("//div[contains(text(),'Wait')]",2);
+					wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(text(),'Wait')]"))));				
+
 
 					//Need to check if Save button was clicked but window still not closed
 					if (driver.findElements(By.xpath("//table[contains(@id,'ext')]/tbody/tr[2]/td[2]/em/button[text()='Save']")).size()>0) {
@@ -191,13 +199,15 @@ public class CreateReport {
 
 					}
 					
-					//Wait while table saved and closed
+					log.debug("Wait while table saved and closed");
 					if (isDeviceReport){
-						if (!navi.waitForElement("//div/div/span[text()='IM Table (Device)']", 2))
-							return false;
+						//if (!navi.waitForElement("//div/div/span[text()='IM Table (Device)']", 2))
+						//	return false;
+						wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div/div/span[text()='IM Table (Device)']"))));
 					} else {
-						if (!navi.waitForElement("//div/div/span[text()='IM Table (Interface - Component)']", 2))
-							return false;
+						//if (!navi.waitForElement("//div/div/span[text()='IM Table (Interface - Component)']", 2))
+						//	return false;
+						wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div/div/span[text()='IM Table (Interface - Component)']"))));
 					}
 						
 					//Create a new one
@@ -250,11 +260,13 @@ public class CreateReport {
 						
 						//Wait while table saved and closed
 						if (isDeviceReport){
-							if (!navi.waitForElement("//div/div/span[text()='IM Table (Device)']", 2))
-								return false;
+							//if (!navi.waitForElement("//div/div/span[text()='IM Table (Device)']", 2))
+							//	return false;
+							wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div/div/span[text()='IM Table (Device)']"))));
 						} else {
-							if (!navi.waitForElement("//div/div/span[text()='IM Table (Interface - Component)']", 2))
-								return false;
+							//if (!navi.waitForElement("//div/div/span[text()='IM Table (Interface - Component)']", 2))
+							//	return false;
+							wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div/div/span[text()='IM Table (Interface - Component)']"))));
 						}
 							
 						//Create a new one
@@ -288,9 +300,10 @@ public class CreateReport {
 
 		//Click on Save button
 		navi.protectedClick("//table[contains(@id,'ext')]/tbody/tr[2]/td[2]/em/button[text()='Save']", "Unable to click Save button. Retrying.");
-
 		Thread.sleep(500);
-		navi.waitForElement("//div[contains(text(),'Wait')]",2);
+
+		//navi.waitForElement("//div[contains(text(),'Wait')]",2);
+		wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(text(),'Wait')]"))));
 
 		//Need to check if Save button was clicked but window still not closed
 		if (driver.findElements(By.xpath("//table[contains(@id,'ext')]/tbody/tr[2]/td[2]/em/button[text()='Save']")).size()>0) {
@@ -301,11 +314,13 @@ public class CreateReport {
 		
 		//Wait while table saved and closed
 		if (isDeviceReport){
-			if (!navi.waitForElement("//div/div/span[text()='IM Table (Device)']", 2))
-				return false;
+			//if (!navi.waitForElement("//div/div/span[text()='IM Table (Device)']", 2))
+			//	return false;
+			wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div/div/span[text()='IM Table (Device)']"))));
 		} else {
-			if (!navi.waitForElement("//div/div/span[text()='IM Table (Interface - Component)']", 2))
-				return false;
+			//if (!navi.waitForElement("//div/div/span[text()='IM Table (Interface - Component)']", 2))
+			//	return false;
+			wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div/div/span[text()='IM Table (Interface - Component)']"))));
 		}
 		
 		
@@ -342,7 +357,8 @@ public class CreateReport {
 				searchFields.get(i).sendKeys(Keys.ENTER);
 				Thread.sleep(500);
 				//Wait for Loading message
-				navi.waitForElement("//div[contains(text(),'Loading')]", 2);
+				//navi.waitForElement("//div[contains(text(),'Loading')]", 2);
+				wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(text(),'Loading')]"))));
 			}
 			Thread.sleep(500);
 			
@@ -375,8 +391,9 @@ public class CreateReport {
 		setup.click();
 		
 		//Wait while page will be reloaded after deleting tab
-		if (!navi.waitForElement("//span[text()='QA-"+timeStamp+"']", 2))
-			return false;
+		//if (!navi.waitForElement("//span[text()='QA-"+timeStamp+"']", 2))
+		//	return false;
+		wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//span[text()='QA-"+timeStamp+"']"))));
 		
 		log.debug("Finished CreateReport.createCustomTab execution.");
 		return true;
@@ -427,12 +444,13 @@ public class CreateReport {
 		WebElement setup = driver.findElement(By.xpath("//div[@class='x-grid3-body']/div["+tableNum+"]/table/tbody/tr/td[2]/div/div"));
 		setup.click();
 		
-		//Wait while available and selected metric list will be loaded
-		navi.waitForElement("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl", 1);
-		navi.waitForElement("//table[@class='x-table-layout']/tbody/tr/td[3]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl", 1);
-		
-		//Remove "Device Name" and "Description" metrics from selected metrics
+		log.debug("Wait while available and selected metric list will be loaded");
+		//navi.waitForElement("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl", 1);
+		//navi.waitForElement("//table[@class='x-table-layout']/tbody/tr/td[3]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl", 1);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[3]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl")));
 
+		//Remove "Device Name" and "Description" metrics from selected metrics
 		if (!navi.protectedDoubleClick("//div[@class='x-list-body-inner']/dl/dt/em[text()='Device Name']", "WARN: Unable to remove 'Device Name' metric. Retrying."))
 			return false;
 
@@ -443,8 +461,10 @@ public class CreateReport {
 		if (reportType==2) {
 						
 			//Wait while available metric list will be loaded
-			navi.waitForElement("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl", 1);
-			//Get the 1st metric in Available metric list 
+			//navi.waitForElement("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl", 1);
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl")));
+
+			//Get the 1st metric in Available metric list
 			String firstMetricName =navi.getWebElement("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl[1]/dt/em").getText();
 			int metricsCount=driver.findElements(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl")).size();
 						
@@ -471,8 +491,10 @@ public class CreateReport {
 				} while (tmpMetric.equals(firstMetricName) && tmpMetricsCount==metricsCount);
 									
 				//Wait while available metric list will be reloaded after changing MF
-				navi.waitForElement("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl", 1);
-				navi.waitForElement("//table[@class='x-table-layout']/tbody/tr/td[3]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl", 1);
+				//navi.waitForElement("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl", 1);
+				//navi.waitForElement("//table[@class='x-table-layout']/tbody/tr/td[3]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl", 1);
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl")));
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[3]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl")));
 				
 			}
 

@@ -2,11 +2,9 @@ package capm;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,12 +12,14 @@ public class DiscoveryProfiles {
 
 	private static final Logger log = LogManager.getLogger("DiscoveryProfiles");
 	WebDriver driver;
-	
+	Wait<WebDriver> wait;
+
 	public DiscoveryProfiles (WebDriver driver) {
 
 		this.driver = driver;
+		wait = new WebDriverWait(driver,60, 200).withMessage("ExpectedConditions timeout.");
 	}
-	
+
 	public Boolean editDiscoveryProfiles (String dpName, ArrayList<String> ips) throws InterruptedException {
 		
 		log.info("Edit Discovery profile \""+dpName+"\".");
@@ -29,9 +29,11 @@ public class DiscoveryProfiles {
 		navi.selectDataAggregator();
 		navi.gotoDiscoveryProfiles();
 		
-		//Wait while Discovery Profiles list will be loaded
-		while (driver.findElements(By.xpath("//span[@class='x-grid3-header-label' and text()='Name']")).size()<1 && driver.findElements(By.xpath("//div[text()='No Data To Display']")).size()<1)
-			Thread.sleep(500);
+		log.debug("Wait while Discovery Profiles list will be loaded");
+//		while (driver.findElements(By.xpath("//span[@class='x-grid3-header-label' and text()='Name']")).size()<1 && driver.findElements(By.xpath("//div[text()='No Data To Display']")).size()<1)
+//			Thread.sleep(500);
+		wait.until(ExpectedConditions.or(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='x-grid3-header-label' and text()='Name']")),
+				ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='No Data To Display']"))));
 				
 		//Check if our profile already exists
 		List<WebElement> selectDP = driver.findElements(By.xpath("//div[text()='"+dpName+"']"));
