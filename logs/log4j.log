@@ -1,3 +1,9 @@
-2017-12-13 11:48:31 [INFO ] TestCase2 - CAPM Cert Automation Testing, version 4.31 (build 15112017)
-2017-12-13 11:48:58 [INFO ] TestCase2 - CAPM Cert Automation Testing, version 4.31 (build 15112017)
-2017-12-13 11:49:17 [INFO ] TestCase2 - CAPM Cert Automation Testing, version 4.31 (build 15112017)
+2017-12-13 14:34:31 [INFO ] TestCase2 - CAPM Cert Automation Testing, version 4.31 (build 15112017)
+2017-12-13 14:34:34 [INFO ] TestCase2 - Create an output directory d:\Automation\rimse01-E10480_Sim30047
+2017-12-13 14:34:34 [INFO ] readmeParser - Run readmeParser.getMetrics
+2017-12-13 14:34:34 [INFO ] readmeParser - Loaded 1 vendor cert(s) and 1 metrics from readme file.
+2017-12-13 14:34:52 [INFO ] VCMF - Looking for OaccessIPSLAEthernetJitterMib VC in Polled Metric Families.
+2017-12-13 14:34:54 [INFO ] VCMF - Succesfully Found VC "OaccessIPSLAEthernetJitterMib" with "NormalizedEthernetJitterInfo" MF
+2017-12-13 14:34:55 [INFO ] CreateReport - Will create report for element "OAccess-IPSLA-besteffort-COS0"
+2017-12-13 14:35:02 [INFO ] CreateReport - Create new report tab QA2017.12.13.14.35.02
+2017-12-13 14:35:06 [INFO ] CreateReport - Adding metrics to report table.

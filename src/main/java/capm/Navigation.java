@@ -12,16 +12,21 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class Navigation {
 
 	private static final Logger log = LogManager.getLogger("Navigation");
 	WebDriver driver;
+	Wait<WebDriver> wait;
 	
 	public Navigation (WebDriver driver) {
+
 		this.driver = driver;
+		wait = new WebDriverWait(driver,60, 200).withMessage("ExpectedConditions timeout.");
 	}
 
 	protected WebElement getWebElement (String xpath) throws InterruptedException {
@@ -86,6 +91,8 @@ public class Navigation {
 		int maxNumberToTry=15;
 		Boolean isClicked = false;
 		int tryNum=0;
+
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
 
 		do {
 			try {

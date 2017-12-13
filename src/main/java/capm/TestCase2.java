@@ -44,7 +44,7 @@ public class TestCase2 {
 	@Parameters({"Driver", "RemoteDriverURL","logLevel"})
 	public void beforeSetup(String browserDriver, @Optional("http://127.0.0.1:4444/wd/hub") String RemoteDriverURL, @Optional("") String logLevel) throws MalformedURLException {
 
-		log.info("CAPM Cert Automation Testing, version 4.31 (build 15112017)");
+		log.info("CAPM Cert Automation Testing, version 4.4 (build 13122017)");
 		if (!logLevel.equals("") && !logLevel.toLowerCase().equals("info")) {
 
 			LoggerContext ctx = (LoggerContext) LogManager.getContext(false);

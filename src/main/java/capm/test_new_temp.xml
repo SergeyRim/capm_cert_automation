@@ -9,7 +9,7 @@
     <!-- Driver parameter values: "Firefox", "Chrome", "IE" OR "RemoteFirefox", "RemoteChrome"  -->
     <!-- logLevel parameter values: "INFO", "DEBUG", "ERROR"                                    -->
     <parameter name="logLevel" value="INFO"/>
-    <parameter name="Driver" value="RemoteFirefox"/>
+    <parameter name="Driver" value="Firefox"/>
     <!--<parameter name="RemoteDriverURL" value="http://10.162.5.194:4444/wd/hub"/>-->
     <parameter name="RemoteDriverURL" value="http://10.242.23.195:4444/wd/hub"/>
 
@@ -154,15 +154,15 @@
     <!--</test>-->
 
 
-    <!--<test name="Create custom report (CAPM 3.5)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-E10480:8181" />-->
-        <!--<parameter name="daServer" value="rimse01-E10479" />-->
-        <!--<parameter name="daPassword" value="???.qaperf184" />-->
-        <!--<groups> <run>-->
-            <!--<include name="CreateCustomReport"/>-->
-        <!--</run></groups>-->
-        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
-    <!--</test>-->
+    <test name="Create custom report (CAPM 3.5)">
+        <parameter name="capcServer" value="http://rimse01-E10480:8181" />
+        <parameter name="daServer" value="rimse01-E10479" />
+        <parameter name="daPassword" value="???.qaperf184" />
+        <groups> <run>
+            <include name="CreateCustomReport"/>
+        </run></groups>
+        <classes> <class name="capm.TestCase2" /> </classes>
+    </test>
 
     <!--<test name="Verify VCs and components For Already Certified US =PM3.2">-->
         <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt" />-->

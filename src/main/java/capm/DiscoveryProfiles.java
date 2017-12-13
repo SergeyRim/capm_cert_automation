@@ -35,7 +35,7 @@ public class DiscoveryProfiles {
 		wait.until(ExpectedConditions.or(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='x-grid3-header-label' and text()='Name']")),
 				ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='No Data To Display']"))));
 				
-		//Check if our profile already exists
+		log.debug("Check if our profile already exists");
 		List<WebElement> selectDP = driver.findElements(By.xpath("//div[text()='"+dpName+"']"));
 		if (selectDP.size()==0) {
 			log.info("Discovery profile "+dpName+" not found. Create a new one.");
@@ -43,7 +43,7 @@ public class DiscoveryProfiles {
 			if (!navi.protectedClick("//button[text()='New']", "WARN: Unable to click on existing discover profile "+dpName+". Retrying."))
 				return false;
 
-			WebElement dpNameField = navi.getWebElement("//input[@name='name']");
+			WebElement dpNameField = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='name']")));
 			dpNameField.sendKeys(dpName);
 		} else {
 			log.info("Found existing "+dpName+" profile. Modify it.");
@@ -54,9 +54,10 @@ public class DiscoveryProfiles {
 			if (!navi.protectedClick("//button[text()='Edit']", "WARN: Unable to click on EDIT button. Retrying."))
 				return false;
 
-			//Remove all existing IPs
-			if (!navi.waitForElement("//div[@class='x-tab-panel-body x-tab-panel-body-noborder x-tab-panel-body-top']/div[1]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/div/div", 1))
-				return false;
+			log.debug("Remove all existing IPs.");
+			//if (!navi.waitForElement("//div[@class='x-tab-panel-body x-tab-panel-body-noborder x-tab-panel-body-top']/div[1]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/div/div", 1))
+			//	return false;
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='x-tab-panel-body x-tab-panel-body-noborder x-tab-panel-body-top']/div[1]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/div/div")));
 		
 			List<WebElement> existingIPs = driver.findElements(By.xpath("//div[@class='x-tab-panel-body x-tab-panel-body-noborder x-tab-panel-body-top']/div[1]/div/div/div/div/div/div/div[2]/div/div[1]/div[2]/div/div"));
 			
@@ -69,28 +70,29 @@ public class DiscoveryProfiles {
 				action.keyUp(Keys.CONTROL);
 				action.build().perform();
 				
-				WebElement deleteButton = navi.getWebElement("//td[5]/table/tbody/tr[2]/td[2]/em/button[text()='Delete']");
+				WebElement deleteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[5]/table/tbody/tr[2]/td[2]/em/button[text()='Delete']")));
 				deleteButton.click();
 			}
 						
 		}
 		
-		WebElement ipaddrFiled = navi.getWebElement("//div[1]/div/table/tbody/tr/td[1]/table/tbody/tr/td[1]/div/input");
+		WebElement ipaddrFiled = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[1]/div/table/tbody/tr/td[1]/table/tbody/tr/td[1]/div/input")));
 		for (int i=0; i<ips.size(); i++) {
 		
 			ipaddrFiled.sendKeys(ips.get(i));
 			
-			WebElement addButton = navi.getWebElement("//button[text()='Add']");
+			WebElement addButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Add']")));
 			addButton.click();
 		}
 		
 		Thread.sleep(1000);
-		WebElement saveButton = navi.getWebElement("//button[text()='Save']");
+		WebElement saveButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Save']")));
 		saveButton.click();
 		
-		//Waiting for closing Discovery Profile window
-		if (!navi.waitForElement("//span[@class='x-window-header-text' and text()='Discovery Profile']", 2))
-			return false;
+		log.debug("Waiting for closing Discovery Profile window");
+		//if (!navi.waitForElement("//span[@class='x-window-header-text' and text()='Discovery Profile']", 2))
+		//	return false;
+		wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//span[@class='x-window-header-text' and text()='Discovery Profile']"))));
 			
 		//Need to wait while list can be reloaded several times
 		Thread.sleep(2000);
@@ -104,16 +106,14 @@ public class DiscoveryProfiles {
 		if (!navi.protectedClick("//button[text()='Run']", "WARN: Unable to click on RUN button. Retrying."))
 			return false;
 
-		//Wait for "Run Discovery Profile" window opened
-		if (!navi.waitForElement("//span[text()='Run Discovery Profile']", 1))
-			return false;
+		log.debug("Wait for \"Run Discovery Profile\" window opened");
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[text()='Run Discovery Profile']")));
 			
-		WebElement yesButton = driver.findElement(By.xpath("//button[text()='Yes']"));
+		WebElement yesButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Yes']")));
 		yesButton.click();
 		
-		//Wait for "Run Discovery Profile" window closed
-		if (!navi.waitForElement("//span[text()='Run Discovery Profile']", 2))
-			return false;
+		log.debug("Wait for \"Run Discovery Profile\" window closed");
+		wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//span[text()='Run Discovery Profile']"))));
 		
 		return true;
 	}
