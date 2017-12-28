@@ -1,5 +1,6 @@
 package capm;
 
+import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -27,6 +28,8 @@ public class ScreenshotListener extends TestListenerAdapter {
         if(!result.isSuccess()){
             try {
                 File sourceFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+                byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+                attachScreenshotToReport (screenshot);
                 FileUtils.copyFile(sourceFile, new File (imgPath));
 
                 //BufferedImage image = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
@@ -37,6 +40,12 @@ public class ScreenshotListener extends TestListenerAdapter {
             Reporter.log("ERR: Error in method \""+methodName+"\". Screenshot saved under "+imgPath);
         }
 
+    }
+
+    //Allure attachment
+    @Attachment(value = "Page screenshot", type = "image/png")
+    private byte[] attachScreenshotToReport(byte[] screenshot) {
+        return screenshot;
     }
 
 }

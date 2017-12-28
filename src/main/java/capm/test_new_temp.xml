@@ -9,7 +9,7 @@
     <!-- Driver parameter values: "Firefox", "Chrome", "IE" OR "RemoteFirefox", "RemoteChrome"  -->
     <!-- logLevel parameter values: "INFO", "DEBUG", "ERROR"                                    -->
     <parameter name="logLevel" value="INFO"/>
-    <parameter name="Driver" value="Firefox"/>
+    <parameter name="Driver" value="RemoteFirefox"/>
     <!--<parameter name="RemoteDriverURL" value="http://10.162.5.194:4444/wd/hub"/>-->
     <parameter name="RemoteDriverURL" value="http://10.242.23.195:4444/wd/hub"/>
 
@@ -27,7 +27,7 @@
     <parameter name="priorityFile" value="d:\CAPM\Priority.txt" />
 
     <!--<test name="Add Vendor Priority Grouping (CAPM 3.1)">-->
- 	    <!--<parameter name="daServer" value="rimse01-da1" />-->
+ 	    <!--<parameter name="daServer" value="rimse01-da31.bluesky.ca.com" />-->
  	    <!--<groups> <run>-->
         	<!--<include name="AddVendorPriorityGrouping"/>-->
         <!--</run></groups>-->
@@ -35,7 +35,7 @@
     <!--</test>-->
 
     <!--<test name="Add Vendor Priority Grouping (CAPM 3.2)">-->
-        <!--<parameter name="daServer" value="rimse01-da3" />-->
+        <!--<parameter name="daServer" value="rimse01-da32.bluesky.ca.com" />-->
         <!--<groups> <run>-->
             <!--<include name="AddVendorPriorityGrouping"/>-->
         <!--</run></groups>-->
@@ -47,21 +47,21 @@
     <!-- CHANGE VENDOR PRIORITY, CREATE MONITORING AND DISCOVER PROFILES -->
     <!-- =================================================== -->
 
-    <parameter name="simIDs" value="public:30047" />
+    <parameter name="simIDs" value="public:30758,public:30756" />
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
     <parameter name="MonitoringDiscoveryProfileName" value="QA2" />
 
-    <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM 3.1)">-->
-         <!--<parameter name="capcServer" value="http://rimse01-pc1:8181" />-->
-        <!--<groups> <run>-->
-            <!--<include name="CreateModifyMP"/>-->
-            <!--<include name="ChangeVP"/>-->
-        <!--</run></groups>-->
-        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
-    <!--</test>-->
+    <test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM 3.1)">
+         <parameter name="capcServer" value="http://rimse01-pc31.bluesky.ca.com:8181" />
+        <groups> <run>
+            <include name="CreateModifyMP"/>
+            <include name="ChangeVP"/>
+        </run></groups>
+        <classes> <class name="capm.TestCase2" /> </classes>
+    </test>
 
     <!--<test name="Create/Modify Discovery Profile (CAPM 3.1)">-->
-         <!--<parameter name="capcServer" value="http://rimse01-pc1:8181" />-->
+         <!--<parameter name="capcServer" value="http://rimse01-pc31.bluesky.ca.com:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="CreateModifyDP"/>-->
         <!--</run></groups>-->
@@ -70,7 +70,7 @@
 
 
     <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM 3.2)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc3:8181" />-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc32.bluesky.ca.com:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="ChangeVP"/>-->
             <!--<include name="CreateModifyMP"/>-->
@@ -80,7 +80,7 @@
 
 
     <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.2">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc3:8181"/>-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc32.bluesky.ca.com:8181"/>-->
         <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt"/>-->
         <!--<parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>-->
         <!--<groups><run>-->
@@ -93,7 +93,7 @@
 
 
     <!--<test name="Create/Modify Discovery Profile (CAPM 3.2)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc3:8181" />-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc32.bluesky.ca.com:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="CreateModifyDP"/>-->
         <!--</run></groups>-->
@@ -111,7 +111,7 @@
     <!--</test>-->
 
     <!--<test name="Create/Modify Discovery Profile (CAPM 3.5)">-->
-         <!--<parameter name="capcServer" value="http://rimse01-E10480:8181" />-->
+        <!--<parameter name="capcServer" value="http://rimse01-E10480:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="CreateModifyDP"/>-->
         <!--</run></groups>-->
@@ -127,14 +127,14 @@
     <!-- reportType parameter values: "legacy" or "device" -->
 
 
-    <parameter name="deviceName" value="Sim30047" />
+    <parameter name="deviceName" value="Sim30756" />
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
     <parameter name="reportType" value="Legacy" />
     <parameter name="outputDir" value="d:\Automation" />
 
     <!--<test name="Create custom report _(CAPM 3.1)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc1:8181" />-->
-        <!--<parameter name="daServer" value="rimse01-da1" />-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc31.bluesky.ca.com:8181" />-->
+        <!--<parameter name="daServer" value="rimse01-da31.bluesky.ca.com" />-->
            <!--<parameter name="daPassword" value="???.qaperf184" />-->
         <!--<groups> <run>-->
             <!--<include name="CreateCustomReport"/>-->
@@ -144,8 +144,8 @@
 
 
     <!--<test name="Create custom report (CAPM 3.2)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc3:8181" />-->
-        <!--<parameter name="daServer" value="rimse01-da3" />-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc32.bluesky.ca.com:8181" />-->
+        <!--<parameter name="daServer" value="rimse01-da32.bluesky.ca.com" />-->
            <!--<parameter name="daPassword" value="???.qaperf184" />-->
            <!--<groups> <run>-->
             <!--<include name="CreateCustomReport"/>-->
@@ -154,19 +154,19 @@
     <!--</test>-->
 
 
-    <test name="Create custom report (CAPM 3.5)">
-        <parameter name="capcServer" value="http://rimse01-E10480:8181" />
-        <parameter name="daServer" value="rimse01-E10479" />
-        <parameter name="daPassword" value="???.qaperf184" />
-        <groups> <run>
-            <include name="CreateCustomReport"/>
-        </run></groups>
-        <classes> <class name="capm.TestCase2" /> </classes>
-    </test>
+    <!--<test name="Create custom report (CAPM 3.5)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-E10480:8181" />-->
+        <!--<parameter name="daServer" value="rimse01-E10479" />-->
+        <!--<parameter name="daPassword" value="???.qaperf184" />-->
+        <!--<groups> <run>-->
+            <!--<include name="CreateCustomReport"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
 
     <!--<test name="Verify VCs and components For Already Certified US =PM3.2">-->
         <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt" />-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc3:8181" />-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc32.bluesky.ca.com:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="VerifyVCandComponentsAlreadyCertified"/>-->
         <!--</run></groups>-->
@@ -182,7 +182,7 @@
 
 
         <!--<test name="Delete Discovered Devices (CAPM 3.1)">-->
-             <!--<parameter name="capcServer" value="http://rimse01-pc1:8181" />-->
+             <!--<parameter name="capcServer" value="http://rimse01-pc31.bluesky.ca.com:8181" />-->
             <!--<groups> <run>-->
                 <!--<include name="DeleteDiscoveredDevices"/>-->
             <!--</run></groups>-->
@@ -191,7 +191,7 @@
 
 
          <!--<test name="Delete Discovered Devices _rimse01-pc3 (CAPM 3.2)">-->
-             <!--<parameter name="capcServer" value="http://rimse01-pc3:8181" />-->
+             <!--<parameter name="capcServer" value="http://rimse01-pc32.bluesky.ca.com:8181" />-->
             <!--<groups> <run>-->
                 <!--<include name="DeleteDiscoveredDevices"/>-->
             <!--</run></groups>-->

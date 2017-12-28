@@ -29,7 +29,7 @@ import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
-
+@Listeners({ScreenshotListener.class})
 public class TestCase2 {
 
 	private static final Logger log = LogManager.getLogger("TestCase2");
@@ -44,7 +44,7 @@ public class TestCase2 {
 	@Parameters({"Driver", "RemoteDriverURL","logLevel"})
 	public void beforeSetup(String browserDriver, @Optional("http://127.0.0.1:4444/wd/hub") String RemoteDriverURL, @Optional("") String logLevel) throws MalformedURLException {
 
-		log.info("CAPM Cert Automation Testing, version 4.4 (build 13122017)");
+		log.info("CAPM Cert Automation Testing, version 4.6 (build 28122017)");
 		if (!logLevel.equals("") && !logLevel.toLowerCase().equals("info")) {
 
 			LoggerContext ctx = (LoggerContext) LogManager.getContext(false);

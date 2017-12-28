@@ -616,7 +616,7 @@ public Boolean verifyVcAlreadyCertified (String deviceName, ArrayList<String> vc
 		               	log.debug("Get display name for metric: "+mibMetrics.get(i).get(1));
 		        		//Get Display Name for metric
 		            	//command = "PR=`cat /opt/IMDataAggregator/apache-karaf-2.4.3/certifications/CA/metric_families/properties/"+mibMetrics.get(i).get(1)+".properties |grep 'attribute."+mibMetrics.get(i).get(j).toLowerCase()+".attributedisplayname' | awk -F= '{print $2}'`; if [ \"$PR\" == \"\" ]; then echo 'NotFound'; else echo $PR; fi\n";
-						command = "PR=`cat /opt/IMDataAggregator/*/certifications/CA*/metric_families/properties/"+mibMetrics.get(i).get(1)+".properties |grep 'attribute."+mibMetrics.get(i).get(j).toLowerCase()+".attributedisplayname' | awk -F= '{print $2}'`; if [ \"$PR\" == \"\" ]; then echo 'NotFound'; else echo $PR; fi\n";
+						command = "PR=`cat /opt/IMDataAggregator/*/certifications/CA*/metric_families/properties/"+mibMetrics.get(i).get(1)+".properties |grep 'attribute."+mibMetrics.get(i).get(j).toLowerCase()+".attributedisplayname' | awk -F= '{print $2}' | head -1`; if [ \"$PR\" == \"\" ]; then echo 'NotFound'; else echo $PR; fi\n";
 						log.debug("Search command: "+command);
 		            	sshOut.write(command.getBytes());
 		                sshOut.flush();
@@ -636,7 +636,7 @@ public Boolean verifyVcAlreadyCertified (String deviceName, ArrayList<String> vc
 			            
 			            //Get Documentation for metric
 			            //command = "PR=`cat /opt/IMDataAggregator/apache-karaf-2.4.3/certifications/CA/metric_families/properties/"+mibMetrics.get(i).get(1)+".properties |grep 'attribute."+mibMetrics.get(i).get(j).toLowerCase()+".documentation' | awk -F= '{print $2}'`; if [ \"$PR\" == \"\" ]; then echo 'NotFound'; else echo $PR; fi\n";
-						command = "PR=`cat /opt/IMDataAggregator/*/certifications/CA*/metric_families/properties/"+mibMetrics.get(i).get(1)+".properties |grep 'attribute."+mibMetrics.get(i).get(j).toLowerCase()+".documentation' | awk -F= '{print $2}'`; if [ \"$PR\" == \"\" ]; then echo 'NotFound'; else echo $PR; fi\n";
+						command = "PR=`cat /opt/IMDataAggregator/*/certifications/CA*/metric_families/properties/"+mibMetrics.get(i).get(1)+".properties |grep 'attribute."+mibMetrics.get(i).get(j).toLowerCase()+".documentation' | awk -F= '{print $2}' | head -1`; if [ \"$PR\" == \"\" ]; then echo 'NotFound'; else echo $PR; fi\n";
 						sshOut.write(command.getBytes());
 		                sshOut.flush();
 		                in = new InputStreamReader(sshIn, "UTF-8");
