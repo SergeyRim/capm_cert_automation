@@ -26,16 +26,16 @@
 
     <parameter name="priorityFile" value="d:\CAPM\Priority.txt" />
 
-    <!--<test name="Add Vendor Priority Grouping (CAPM 3.1)">-->
- 	    <!--<parameter name="daServer" value="rimse01-da1" />-->
+    <!--<test name="Add Vendor Priority Grouping (CAPM 3.2)">-->
+ 	    <!--<parameter name="daServer" value="rimse01-E11101" />-->
  	    <!--<groups> <run>-->
         	<!--<include name="AddVendorPriorityGrouping"/>-->
         <!--</run></groups>-->
         <!--<classes> <class name="capm.TestCase3" /> </classes>-->
     <!--</test>-->
 
-    <!--<test name="Add Vendor Priority Grouping (CAPM 3.2)">-->
-        <!--<parameter name="daServer" value="rimse01-da3" />-->
+    <!--<test name="Add Vendor Priority Grouping (CAPM 3.5)">-->
+        <!--<parameter name="daServer" value="rimse01-E11097" />-->
         <!--<groups> <run>-->
             <!--<include name="AddVendorPriorityGrouping"/>-->
         <!--</run></groups>-->
@@ -51,8 +51,8 @@
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
     <parameter name="MonitoringDiscoveryProfileName" value="QA2" />
 
-    <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM 3.1)">-->
-         <!--<parameter name="capcServer" value="http://rimse01-pc1:8181" />-->
+    <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM 3.2)">-->
+         <!--<parameter name="capcServer" value="http://rimse01-E11099:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="CreateModifyMP"/>-->
             <!--<include name="ChangeVP"/>-->
@@ -60,8 +60,8 @@
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
     <!--</test>-->
 
-    <!--<test name="Create/Modify Discovery Profile (CAPM 3.1)">-->
-         <!--<parameter name="capcServer" value="http://rimse01-pc1:8181" />-->
+    <!--<test name="Create/Modify Discovery Profile (CAPM 3.2)">-->
+         <!--<parameter name="capcServer" value="http://rimse01-E11099:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="CreateModifyDP"/>-->
         <!--</run></groups>-->
@@ -69,8 +69,8 @@
     <!--</test>-->
 
 
-    <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM 3.2)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc3:8181" />-->
+    <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM 3.5)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-E11045:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="ChangeVP"/>-->
             <!--<include name="CreateModifyMP"/>-->
@@ -79,8 +79,8 @@
     <!--</test>-->
 
 
-    <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.2">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc3:8181"/>-->
+    <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.5">-->
+        <!--<parameter name="capcServer" value="http://rimse01-E11045:8181"/>-->
         <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt"/>-->
         <!--<parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>-->
         <!--<groups><run>-->
@@ -92,8 +92,8 @@
     <!--</test>-->
 
 
-    <!--<test name="Create/Modify Discovery Profile (CAPM 3.2)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc3:8181" />-->
+    <!--<test name="Create/Modify Discovery Profile (CAPM 3.5)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-E11045:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="CreateModifyDP"/>-->
         <!--</run></groups>-->
@@ -101,7 +101,7 @@
     <!--</test>-->
 
 
-    <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM 3.5)">-->
+    <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM 3.6)">-->
          <!--<parameter name="capcServer" value="http://rimse01-E10480:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="ChangeVP"/>-->
@@ -110,7 +110,7 @@
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
     <!--</test>-->
 
-    <!--<test name="Create/Modify Discovery Profile (CAPM 3.5)">-->
+    <!--<test name="Create/Modify Discovery Profile (CAPM 3.6)">-->
          <!--<parameter name="capcServer" value="http://rimse01-E10480:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="CreateModifyDP"/>-->
@@ -132,9 +132,9 @@
     <parameter name="reportType" value="Legacy" />
     <parameter name="outputDir" value="d:\Automation" />
 
-    <!--<test name="Create custom report _(CAPM 3.1)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc1:8181" />-->
-        <!--<parameter name="daServer" value="rimse01-da1" />-->
+    <!--<test name="Create custom report _(CAPM 3.2)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-E11099:8181" />-->
+        <!--<parameter name="daServer" value="rimse01-E11101" />-->
            <!--<parameter name="daPassword" value="???.qaperf184" />-->
         <!--<groups> <run>-->
             <!--<include name="CreateCustomReport"/>-->
@@ -143,8 +143,8 @@
     <!--</test>-->
 
 
-    <!--<test name="Create custom report (CAPM 3.2)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc3:8181" />-->
+    <!--<test name="Create custom report (CAPM 3.5)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-E11045:8181" />-->
         <!--<parameter name="daServer" value="rimse01-da3" />-->
            <!--<parameter name="daPassword" value="???.qaperf184" />-->
            <!--<groups> <run>-->
@@ -154,7 +154,7 @@
     <!--</test>-->
 
 
-    <!--<test name="Create custom report (CAPM 3.5)">-->
+    <!--<test name="Create custom report (CAPM 3.6)">-->
         <!--<parameter name="capcServer" value="http://rimse01-E10480:8181" />-->
         <!--<parameter name="daServer" value="rimse01-E10479" />-->
         <!--<parameter name="daPassword" value="???.qaperf184" />-->
@@ -164,9 +164,9 @@
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
     <!--</test>-->
 
-    <!--<test name="Verify VCs and components For Already Certified US =PM3.2">-->
+    <!--<test name="Verify VCs and components For Already Certified US =PM3.5">-->
         <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt" />-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc3:8181" />-->
+        <!--<parameter name="capcServer" value="http://rimse01-E11045:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="VerifyVCandComponentsAlreadyCertified"/>-->
         <!--</run></groups>-->
@@ -181,8 +181,8 @@
     <!-- =================================================== -->
 
 
-        <!--<test name="Delete Discovered Devices (CAPM 3.1)">-->
-             <!--<parameter name="capcServer" value="http://rimse01-pc1:8181" />-->
+        <!--<test name="Delete Discovered Devices (CAPM 3.2)">-->
+             <!--<parameter name="capcServer" value="http://rimse01-E11099:8181" />-->
             <!--<groups> <run>-->
                 <!--<include name="DeleteDiscoveredDevices"/>-->
             <!--</run></groups>-->
@@ -190,8 +190,8 @@
          <!--</test>-->
 
 
-         <!--<test name="Delete Discovered Devices _rimse01-pc3 (CAPM 3.2)">-->
-             <!--<parameter name="capcServer" value="http://rimse01-pc3:8181" />-->
+         <!--<test name="Delete Discovered Devices _rimse01-pc3 (CAPM 3.5)">-->
+             <!--<parameter name="capcServer" value="http://rimse01-E11045:8181" />-->
             <!--<groups> <run>-->
                 <!--<include name="DeleteDiscoveredDevices"/>-->
             <!--</run></groups>-->
@@ -199,7 +199,7 @@
          <!--</test>-->
 
 
-        <!--<test name="Delete Discovered Devices (CAPM 3.5)">-->
+        <!--<test name="Delete Discovered Devices (CAPM 3.6)">-->
             <!--<parameter name="capcServer" value="http://rimse01-E10480:8181" />-->
             <!--<groups> <run>-->
                 <!--<include name="DeleteDiscoveredDevices"/>-->
