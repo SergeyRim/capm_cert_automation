@@ -20,6 +20,5 @@
             <AppenderRef ref="LogFile"/>
         </Root>
 
-
     </Loggers>
 </configuration>

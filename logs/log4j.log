@@ -1,0 +1,5 @@
+2018-02-26 15:31:48 [INFO ] TestCase2 - CAPM Cert Automation Testing, version 4.7 (build 08012018)
+2018-02-26 15:31:48 [INFO ] TestCase2 - Changing log level to DEBUG according to XML file configuration.
+2018-02-26 15:32:01 [DEBUG] Navigation - waitForElement: Successful on //span[text()='All Data Aggregators']
+2018-02-26 15:32:03 [DEBUG] Navigation - protectedDoubleClick: Successful on //span[contains(.,'All Devices')]
+2018-02-26 15:32:04 [DEBUG] Navigation - getWebElement: Succesful on //li[2][@class='x-tree-node']/ul[@class='x-tree-node-ct']/li

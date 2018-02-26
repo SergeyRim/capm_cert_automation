@@ -23,7 +23,7 @@
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
     <!--</test>-->
 
-    <test name="Assign Data Collector _ rimse01-pc32 (CAPM 3.2)">
+    <test name="Assign Data Collector _ rimse01-pc-dev (CAPM DEV)">
         <parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181" />
         <groups> <run>
             <include name="AssignDataCollector"/>

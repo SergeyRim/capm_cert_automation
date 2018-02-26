@@ -20,6 +20,7 @@ public class readmeParser {
 		try (BufferedReader reader = new BufferedReader(
 				new InputStreamReader(
 						new FileInputStream(vpFileLocation), StandardCharsets.UTF_8))){
+
 			String line, line_prev="";
 	        	        
 	        while ((line = reader.readLine()) != null) {
@@ -361,8 +362,10 @@ public ArrayList<String> getVCsForAlreadyCertified(String readmeFileLocation){
 		replaceList.add(new String[]{"Environmental Sensor - VoltageDC","Environmental Sensor - Voltage DC"});
 		replaceList.add(new String[]{"Environmental Sensor - Sound","Environmental Sensor - Sound Intensity"});
 		replaceList.add(new String[]{"Qos ClassMap","QoS ClassMap"});
-		replaceList.add(new String[]{"Environmental Sensor - VoltageAC","Environmental Sensor - Voltage AC"});
+		replaceList.add(new String[]{"Environmental Sensor - VoltageAC","Environmental Sensor - Voltage AC "});
 		replaceList.add(new String[]{"Environmental Sensor - Electric Current","Environmental Sensor - Electric Current Status"});
+		replaceList.add(new String[]{"Qos Traffic Shaping","QoS Traffic Shaping"});
+		replaceList.add(new String[]{"Qos RED","QoS RED"});
 
 		log.debug("Changing wrong metric families if needed.");
 		for (int i=0; i<mfArray.size();i++) {
