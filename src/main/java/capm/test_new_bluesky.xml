@@ -47,7 +47,7 @@
     <!-- CHANGE VENDOR PRIORITY, CREATE MONITORING AND DISCOVER PROFILES -->
     <!-- =================================================== -->
 
-    <parameter name="simIDs" value="public:29719" />
+    <parameter name="simIDs" value="public:31227" />
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
     <parameter name="MonitoringDiscoveryProfileName" value="QA2" />
 
@@ -126,7 +126,7 @@
     <!-- reportType parameter values: "legacy" or "device" -->
 
 
-    <parameter name="deviceName" value="Sim29719" />
+    <parameter name="deviceName" value="Sim31227" />
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
     <parameter name="reportType" value="Legacy" />
     <parameter name="outputDir" value="d:\Automation" />
@@ -153,15 +153,15 @@
     <!--</test>-->
 
 
-    <!--<test name="Create custom report (CAPM DEV)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181" />-->
-        <!--<parameter name="daServer" value="rimse01-da-dev.bluesky.ca.com" />-->
-        <!--<parameter name="daPassword" value="???.qaperf184" />-->
-        <!--<groups> <run>-->
-            <!--<include name="CreateCustomReport"/>-->
-        <!--</run></groups>-->
-        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
-    <!--</test>-->
+    <test name="Create custom report (CAPM DEV)">
+        <parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181" />
+        <parameter name="daServer" value="rimse01-da-dev.bluesky.ca.com" />
+        <parameter name="daPassword" value="???.qaperf184" />
+        <groups> <run>
+            <include name="CreateCustomReport"/>
+        </run></groups>
+        <classes> <class name="capm.TestCase2" /> </classes>
+    </test>
 
     <!--<test name="Verify VCs and components For Already Certified US =PM3.5">-->
         <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt" />-->
@@ -204,6 +204,7 @@
         <!--</run></groups>-->
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
     <!--</test>-->
+
 
 
 </suite>

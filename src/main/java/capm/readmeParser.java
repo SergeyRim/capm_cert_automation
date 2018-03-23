@@ -366,6 +366,7 @@ public ArrayList<String> getVCsForAlreadyCertified(String readmeFileLocation){
 		replaceList.add(new String[]{"Environmental Sensor - Electric Current","Environmental Sensor - Electric Current Status"});
 		replaceList.add(new String[]{"Qos Traffic Shaping","QoS Traffic Shaping"});
 		replaceList.add(new String[]{"Qos RED","QoS RED"});
+		replaceList.add(new String[]{"VPDN System Stats","VPDN Tunnel"});
 
 		log.debug("Changing wrong metric families if needed.");
 		for (int i=0; i<mfArray.size();i++) {

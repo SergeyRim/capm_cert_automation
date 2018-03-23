@@ -101,7 +101,7 @@ public class DiscoveryProfiles {
 			return false;
 
 		//Run discover
-		log.info("Run discover profile.");
+		log.info("Running discover profile...");
 
 		if (!navi.protectedClick("//button[text()='Run']", "WARN: Unable to click on RUN button. Retrying."))
 			return false;
@@ -114,6 +114,9 @@ public class DiscoveryProfiles {
 		
 		log.debug("Wait for \"Run Discovery Profile\" window closed");
 		wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//span[text()='Run Discovery Profile']"))));
+
+		Thread.sleep(3000);
+		log.info("Success.");
 		
 		return true;
 	}

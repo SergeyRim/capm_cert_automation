@@ -408,16 +408,16 @@ public class CreateReport {
 		Boolean isClicked = false;
 		
 		Navigation navi = new Navigation (driver);
-		//DragAndDrop new table
-		//Thread.sleep(500);
+		log.debug("DragAndDrop new table");
 		
 		WebElement moveFrom;
 		switch (reportType) {
-			case 1: 
-					moveFrom = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='x-panel-body pageBuilder-accordion-container-body x-panel-body-noheader x-panel-body-noborder']/div/div[1 or 2]/div[2]/div/div[2]/div/div/div/div/div[2]/div/div[4]/table/tbody/tr/td/div[text()='IM Table (Interface - Component)']")));
+			case 1: moveFrom = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='x-panel-body pageBuilder-accordion-container-body x-panel-body-noheader x-panel-body-noborder']/div/div[1 or 2]/div[2]/div/div[2]/div/div/div/div/div[2]/div/div[4]/table/tbody/tr/td/div[text()='IM Table (Interface - Component)']")));
 					break;
 					
-			case 2: moveFrom = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='IM Table (Device)']")));
+			//case 2: moveFrom = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='IM Table (Device)']")));
+			case 2: wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='IM Table (Device)' and @class='x-grid3-cell-inner x-grid3-col-viewname x-unselectable']")));
+					moveFrom = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='IM Table (Device)' and @class='x-grid3-cell-inner x-grid3-col-viewname x-unselectable']")));
 					break;
 			
 			default: moveFrom = null;

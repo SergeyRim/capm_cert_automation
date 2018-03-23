@@ -142,6 +142,7 @@ public class VCMF {
 		
 		while (driver.findElements(By.xpath("//li[2][@class='x-tree-node']/ul[@class='x-tree-node-ct']/li/div/span[2]/a/span[not (contains(text(),'DataAggregator'))]")).size()>0) {
 
+			log.info("Deleting device "+driver.findElements(By.xpath("//li[2][@class='x-tree-node']/ul[@class='x-tree-node-ct']/li/div/span[2]/a/span[not (contains(text(),'DataAggregator'))]")).get(0).getText());
 			if (!navi.protectedClick("//li[2][@class='x-tree-node']/ul[@class='x-tree-node-ct']/li/div/span[2]/a/span[not (contains(text(),'DataAggregator'))]", "WARN: Unable to click on device. Retrying."))
 				return false;
 

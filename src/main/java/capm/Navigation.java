@@ -200,7 +200,7 @@ public class Navigation {
 
 	public Boolean selectDataAggregator() throws InterruptedException {
 		
-		while (driver.findElements(By.id("menuId6")).size()<1)
+		while (driver.findElements(By.id("globalSearchField")).size()<1)
 			Thread.sleep(1000);
 
 		int tryNum=0;
@@ -210,24 +210,35 @@ public class Navigation {
 		do {
 			try {
 				isClicked=true;
-				WebElement admintab = driver.findElement(By.xpath("//h2[contains(.,'Administration')]"));
-				
 				Actions action = new Actions(driver);
-				action.moveToElement(admintab).perform();
-				Thread.sleep(500);
-				
-				//WebElement dalink = getWebElement("//a[contains(text(),'Data Aggregator@')]");
-				WebElement dalink = driver.findElement(By.xpath(("//a[contains(text(),'Data Aggregator@')]")));
-				
-				Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-			    String browserName = cap.getBrowserName().toLowerCase();
-			    if (browserName.equals("chrome")) {
-			    	//Alternative click
-			    	JavascriptExecutor executor = (JavascriptExecutor)driver;
-					executor.executeScript("arguments[0].click();", dalink);
-			    } else {
-			    	dalink.click();			    		
-			    }
+
+				//New CAPC Navigation bar logic
+				if (driver.findElements(By.xpath("//button[text()='Administration']")).size()>0) {
+					WebElement admintab = driver.findElement(By.xpath("//button[text()='Administration']"));
+					action.moveToElement(admintab).perform();
+					Thread.sleep(500);
+					WebElement dataSourcesMenu = driver.findElement(By.xpath("//span[text()='Data Sources']"));
+					action.moveToElement(dataSourcesMenu).perform();
+					Thread.sleep(500);
+					WebElement dalink = driver.findElement(By.xpath(("//span[contains(text(),'Data Aggregator@')]")));
+					dalink.click();
+				} else {
+					//Old CAPC Navigation bar logic
+					WebElement admintab = driver.findElement(By.xpath("//h2[contains(.,'Administration')]"));
+					action.moveToElement(admintab).perform();
+					Thread.sleep(500);
+					WebElement dalink = driver.findElement(By.xpath(("//a[contains(text(),'Data Aggregator@')]")));
+
+					Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+					String browserName = cap.getBrowserName().toLowerCase();
+					if (browserName.equals("chrome")) {
+						//Alternative click
+						JavascriptExecutor executor = (JavascriptExecutor)driver;
+						executor.executeScript("arguments[0].click();", dalink);
+					} else {
+						dalink.click();
+					}
+				}
 			    
 			} catch (Exception e) {
 				isClicked=false;
@@ -344,31 +355,65 @@ public class Navigation {
 	
 	
 	public Navigation selectDeviceComponents() throws InterruptedException {
-		
-		WebElement inventory = driver.findElement(By.xpath("//h2[contains(.,'Inventory')]"));
-		//inventory.click();
+
 		Actions action = new Actions(driver);
-		action.moveToElement(inventory).perform();
-		
-		WebElement device_components = driver.findElement(By.linkText("Device Components"));
-		device_components.click();
+		//New CAPC Navigation bar logic
+		if (driver.findElements(By.xpath("//button[text()='Inventory']")).size()>0) {
+			log.debug("Using new CAPC navigation logic.");
+			WebElement admintab = driver.findElement(By.xpath("//button[text()='Inventory']"));
+			action.moveToElement(admintab).perform();
+			Thread.sleep(500);
+			//wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Items']")));
+			WebElement items_menu = driver.findElement(By.xpath("//span[text()='Items']"));
+			action.moveToElement(items_menu).perform();
+			//Wait while menu tab will appears
+			//wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("/html/body/div[16][not(contains(@class,'x-hide-offsets'))]")));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[16]")));
+
+			WebElement device_components = driver.findElement(By.xpath("//span[text()='Device Components']"));
+			device_components.click();
+		} else {
+			//Old CAPC Navigation bar logic
+			log.debug("Using old CAPC navigation logic.");
+			WebElement inventory = driver.findElement(By.xpath("//h2[contains(.,'Inventory')]"));
+			//inventory.click();
+			action.moveToElement(inventory).perform();
+
+			WebElement device_components = driver.findElement(By.linkText("Device Components"));
+			device_components.click();
+		}
 
 		Thread.sleep(200);
 		waitForElement("//div[contains(text(),'Loading')]", 2);
-		
 		return this;
 	}
 	
 	
 	public Navigation selectInterfaces() throws InterruptedException {
-		
-		WebElement inventory = driver.findElement(By.xpath("//h2[contains(.,'Inventory')]"));
-		//inventory.click();
+
 		Actions action = new Actions(driver);
-		action.moveToElement(inventory).perform();
-		
-		WebElement device_components = driver.findElement(By.linkText("Interfaces"));
-		device_components.click();
+		//New CAPC Navigation bar logic
+		if (driver.findElements(By.xpath("//button[text()='Inventory']")).size()>0) {
+			log.debug("Using new CAPC navigation logic.");
+			WebElement admintab = driver.findElement(By.xpath("//button[text()='Inventory']"));
+			action.moveToElement(admintab).perform();
+			Thread.sleep(500);
+			WebElement items_menu = driver.findElement(By.xpath("//span[text()='Items']"));
+			action.moveToElement(items_menu).perform();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[16]")));
+
+			WebElement device_components = driver.findElement(By.xpath("//span[text()='Interfaces']"));
+			device_components.click();
+		} else {
+			//Old CAPC Navigation bar logic
+			log.debug("Using old CAPC navigation logic.");
+			WebElement inventory = driver.findElement(By.xpath("//h2[contains(.,'Inventory')]"));
+			//inventory.click();
+			action.moveToElement(inventory).perform();
+
+			WebElement device_components = driver.findElement(By.linkText("Interfaces"));
+			device_components.click();
+		}
 
 		Thread.sleep(200);
 		waitForElement("//div[contains(text(),'Loading')]", 2);
@@ -378,14 +423,30 @@ public class Navigation {
 	
 	
 	public Navigation selectVirtualInterfaces() throws InterruptedException {
-		
-		WebElement inventory = driver.findElement(By.xpath("//h2[contains(.,'Inventory')]"));
-		//inventory.click();
+
 		Actions action = new Actions(driver);
-		action.moveToElement(inventory).perform();
-		
-		WebElement device_components = driver.findElement(By.linkText("Virtual Interfaces"));
-		device_components.click();
+		//New CAPC Navigation bar logic
+		if (driver.findElements(By.xpath("//button[text()='Inventory']")).size()>0) {
+			log.debug("Using new CAPC navigation logic.");
+			WebElement admintab = driver.findElement(By.xpath("//button[text()='Inventory']"));
+			action.moveToElement(admintab).perform();
+			Thread.sleep(500);
+			WebElement items_menu = driver.findElement(By.xpath("//span[text()='Items']"));
+			action.moveToElement(items_menu).perform();
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[16]")));
+
+			WebElement device_components = driver.findElement(By.xpath("//span[text()='Virtual Interfaces']"));
+			device_components.click();
+		} else {
+			//Old CAPC Navigation bar logic
+			log.debug("Using old CAPC navigation logic.");
+			WebElement inventory = driver.findElement(By.xpath("//h2[contains(.,'Inventory')]"));
+			//inventory.click();
+			action.moveToElement(inventory).perform();
+
+			WebElement device_components = driver.findElement(By.linkText("Virtual Interfaces"));
+			device_components.click();
+		}
 
 		Thread.sleep(200);
 		waitForElement("//div[contains(text(),'Loading')]", 2);
@@ -395,13 +456,30 @@ public class Navigation {
 	
 	
 	public Navigation selectDevices() {
-		
-		WebElement inventory = driver.findElement(By.xpath("//h2[contains(.,'Inventory')]"));
-		//inventory.click();
+
 		Actions action = new Actions(driver);
-		action.moveToElement(inventory).perform();
-		WebElement device_components = driver.findElement(By.linkText("Devices"));
-		device_components.click();
+		//New CAPC Navigation bar logic
+		if (driver.findElements(By.xpath("//button[text()='Inventory']")).size()>0) {
+			log.debug("Using new CAPC navigation logic.");
+			WebElement admintab = driver.findElement(By.xpath("//button[text()='Inventory']"));
+			action.moveToElement(admintab).perform();
+
+			if (driver.findElements(By.xpath("//span[text()='Items']")).size()>0) {
+				WebElement items_menu = driver.findElement(By.xpath("//span[text()='Items']"));
+				action.moveToElement(items_menu).perform();
+			}
+
+			WebElement device_components = driver.findElement(By.xpath("//span[text()='Devices']"));
+			device_components.click();
+		} else {
+			log.debug("Using old CAPC navigation logic.");
+			WebElement inventory = driver.findElement(By.xpath("//h2[contains(.,'Inventory')]"));
+			//inventory.click();
+
+			action.moveToElement(inventory).perform();
+			WebElement device_components = driver.findElement(By.linkText("Devices"));
+			device_components.click();
+		}
 		
 		return this;
 	}
