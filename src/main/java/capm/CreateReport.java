@@ -159,9 +159,7 @@ public class CreateReport {
 					try {
 						isClicked=true;
 						Thread.sleep(100);
-						WebElement currentMetric = driver.findElement(By.xpath("//div[@class='x-list-body-inner']/dl/dt/em[starts-with(text(),'"+metrics.get(i)+" - ') and (contains(text(),'Average') or contains(text(),'Total'))]"));
-						action.doubleClick(currentMetric);
-						action.build().perform();
+						navi.doubleClickOnXpath("//div[@class='x-list-body-inner']/dl/dt/em[starts-with(text(),'"+metrics.get(i)+" - ') and (contains(text(),'Average') or contains(text(),'Total'))]");
 						tryNum++;
 					} catch (Exception e) {
 						if (e.toString().contains("Unable to locate element")) {

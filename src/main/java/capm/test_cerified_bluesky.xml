@@ -17,7 +17,7 @@
 
 
     <parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>
-    <parameter name="simIDs" value="public:31382"/>
+    <parameter name="simIDs" value="public:30687"/>
 
     <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.2">-->
         <!--<parameter name="capcServer" value="http://rimse01-pc32.bluesky.ca.com:8181"/>-->
@@ -93,7 +93,7 @@
     <!--=========================-->
 
     <parameter name="readmeFile" value="d:\CAPM\mf.txt" />
-    <parameter name="deviceName" value="Sim31382" />
+    <parameter name="deviceName" value="Sim30687" />
     <parameter name="outputDir" value="d:\Automation" />
 
 

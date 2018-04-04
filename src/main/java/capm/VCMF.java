@@ -11,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.xpath.operations.Bool;
+//import org.apache.xpath.operations.Bool;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -191,8 +191,8 @@ public class VCMF {
 			while (driver.findElements(By.xpath("//div[contains(text(),'Loading')]")).size()>0)
 				Thread.sleep(500);
 			
-			//Wait while VC list will show only one VC
-			while (driver.findElements(By.xpath("//div[@class='x-panel polarisSelector x-box-item']/div[2]/div[1]/div/div/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div")).size()!=1 && driver.findElements(By.xpath("//div[@class='x-panel polarisSelector x-box-item']/div[2]/div[1]/div/div/div/div[2]/div/div[1]/div[3]/div[text()='No Data To Display']")).size()<1)
+			//Wait while VC list will show only one VC :: Sometimes search results can retunr more than one vc, so changed expression to <1 VC
+			while (driver.findElements(By.xpath("//div[@class='x-panel polarisSelector x-box-item']/div[2]/div[1]/div/div/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div")).size()<1 && driver.findElements(By.xpath("//div[@class='x-panel polarisSelector x-box-item']/div[2]/div[1]/div/div/div/div[2]/div/div[1]/div[3]/div[text()='No Data To Display']")).size()<1)
 				Thread.sleep(500);
 			
 			//Get VC human readable name
@@ -345,7 +345,8 @@ public class VCMF {
 		log.debug("HR MF name is \"" + hrMfName + "\"");
 
 
-		if (!navi.protectedDoubleClick("//a[contains(@href,'" + vcname + "') and contains(@href,'" + mfname + "')]/../../..", "WARN: Unable to click on VC link. Retrying."))
+		//if (!navi.protectedDoubleClick("//a[contains(@href,'" + vcname + "') and contains(@href,'" + mfname + "')]/../../..", "WARN: Unable to click on VC link. Retrying."))
+		if (!navi.protectedClick("//a[contains(@href,'" + vcname + "') and contains(@href,'" + mfname + "')]/../../..", "WARN: Unable to click on VC link. Retrying."))
 			return null;
 
 		while (driver.findElements(By.xpath("//span[text()='Name']")).size() < 1 && driver.findElements(By.xpath("//div[text()='No components to display for this metric family']")).size() < 1)
@@ -473,7 +474,7 @@ public Boolean verifyVcAlreadyCertified (String deviceName, ArrayList<String> vc
 			if (driver.findElements(By.xpath("//a[text()=' "+vcList.get(i)+"']")).size()>0) {
 				log.info("Succesfully Found VC '"+vcList.get(i)+"'");
 				vendorCertifiedVCsFile.write(vcList.get(i)+"\n");
-				if (!navi.protectedDoubleClick("//a[text()=' "+vcList.get(i)+"']/../../..", "WARN: Unable to click on VC. Retrying."))
+				if (!navi.protectedClick("//a[text()=' "+vcList.get(i)+"']/../../..", "WARN: Unable to click on VC. Retrying."))
 					return false;
 				Thread.sleep(1000);
 

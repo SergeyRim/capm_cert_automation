@@ -80,9 +80,7 @@ public class MonitoringProfiles {
 			log.info("Removing existing selected MFs.");
 			List<WebElement> selectedMetrics = driver.findElements(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[3]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl"));
 			for (int i=0; i<selectedMetrics.size(); i++) {
-				WebElement metricToClick = driver.findElement(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[3]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl[1]"));
-				action.doubleClick(metricToClick);
-				action.build().perform();
+				navi.doubleClickOnXpath("//table[@class='x-table-layout']/tbody/tr/td[3]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl[1]");
 			}
 			
 		}
@@ -102,8 +100,7 @@ public class MonitoringProfiles {
 				Thread.sleep(500);
 				List<WebElement> findedMetric = driver.findElements(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl[1]"));
 				if (findedMetric.size()>0) {
-					action.doubleClick(findedMetric.get(0));
-					action.build().perform();
+					navi.doubleClickOnWebElement(findedMetric.get(0));
 				} else {
 					log.error("Unable to find "+metrics.get(i)+" metric family.");
 				}
@@ -116,8 +113,7 @@ public class MonitoringProfiles {
 			for (int i=0; i<metrics.size(); i++) {
 				try {
 					WebElement searchMP = driver.findElement(By.xpath("//em[text()='"+metrics.get(i)+"']"));
-					action.doubleClick(searchMP);
-					action.build().perform();
+					navi.doubleClickOnWebElement(searchMP);
 					Thread.sleep(100);					
 				} catch (Exception e) {
 					log.error("Unable to find '"+metrics.get(i)+"' metric family.");
@@ -154,22 +150,11 @@ public class MonitoringProfiles {
 
 			//Wait while available collections list will be loaded
 			navi.waitForElement("//div[@class='x-list-body-inner']/dl", 1);
-			
-			WebElement collection = driver.findElement(By.xpath("//dl/dt/em[text()='All Manageable Devices']"));
-			Actions dclick = new Actions (driver);
-			dclick.doubleClick(collection).build().perform();				
-			
-			collection = driver.findElement(By.xpath("//dl/dt/em[text()='All Routers']"));
-			dclick = new Actions (driver);
-			dclick.doubleClick(collection).build().perform();				
-			
-			collection = driver.findElement(By.xpath("//dl/dt/em[text()='All Servers']"));
-			dclick = new Actions (driver);
-			dclick.doubleClick(collection).build().perform();
-			
-			collection = driver.findElement(By.xpath("//dl/dt/em[text()='All Switches']"));
-			dclick = new Actions (driver);
-			dclick.doubleClick(collection).build().perform();
+
+			navi.doubleClickOnXpath("//dl/dt/em[text()='All Manageable Devices']");
+			navi.doubleClickOnXpath("//dl/dt/em[text()='All Routers']");
+			navi.doubleClickOnXpath("//dl/dt/em[text()='All Servers']");
+			navi.doubleClickOnXpath("//dl/dt/em[text()='All Switches']");
 			
 			saveButton = driver.findElement(By.xpath("//button[@type='button' and text()='Save']"));
 			saveButton.click();	

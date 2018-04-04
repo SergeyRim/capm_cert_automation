@@ -8,6 +8,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.snmp4j.CommunityTarget;
 import org.snmp4j.PDU;
 import org.snmp4j.Snmp;
@@ -21,6 +24,7 @@ public class Simdepot {
 
 	private static final Logger log = LogManager.getLogger("Simdepot");
 	WebDriver driver;
+	Wait<WebDriver> wait;
 
 	public Simdepot (WebDriver driver) {
 		this.driver = driver;
@@ -50,10 +54,12 @@ public class Simdepot {
 			searchField.clear();
 			searchField.sendKeys(sim_zone_ip[1]);
 			searchField.sendKeys(Keys.ENTER);
+			Thread.sleep(500);
 
 			driver.switchTo().defaultContent();
 			driver.switchTo().frame("present_selection");
 
+			//wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.partialLinkText(sim_zone_ip[1])));
 			WebElement clickOnSim = driver.findElement(By.partialLinkText(sim_zone_ip[1]));
 			clickOnSim.click();
 

@@ -4,13 +4,10 @@ package capm;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.internal.Coordinates;
+import org.openqa.selenium.interactions.internal.Locatable;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
@@ -127,8 +124,7 @@ public class Navigation {
 		do {
 			try {
 				isClicked=true;
-				WebElement elementToClick = driver.findElement(By.xpath(xpath));
-				action.doubleClick(elementToClick).build().perform();
+				doubleClickOnXpath(xpath);
 			} catch (Exception e) {
 				isClicked=false;
 				tryNum++;
@@ -214,14 +210,20 @@ public class Navigation {
 
 				//New CAPC Navigation bar logic
 				if (driver.findElements(By.xpath("//button[text()='Administration']")).size()>0) {
-					WebElement admintab = driver.findElement(By.xpath("//button[text()='Administration']"));
-					action.moveToElement(admintab).perform();
-					Thread.sleep(500);
-					WebElement dataSourcesMenu = driver.findElement(By.xpath("//span[text()='Data Sources']"));
-					action.moveToElement(dataSourcesMenu).perform();
-					Thread.sleep(500);
-					WebElement dalink = driver.findElement(By.xpath(("//span[contains(text(),'Data Aggregator@')]")));
-					dalink.click();
+//					WebElement admintab = driver.findElement(By.xpath("//button[text()='Administration']"));
+//					action.moveToElement(admintab).perform();
+//					Thread.sleep(500);
+//					WebElement dataSourcesMenu = driver.findElement(By.xpath("//span[text()='Data Sources']"));
+//					action.moveToElement(dataSourcesMenu).perform();
+//					Thread.sleep(500);
+//					WebElement dalink = driver.findElement(By.xpath(("//span[contains(text(),'Data Aggregator@')]")));
+//					dalink.click();
+
+					driver.findElement(By.xpath("//button[text()='Administration']")).click();
+					wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[starts-with(text(),'Data Aggregator@')]")));
+					driver.findElement(By.xpath("//a[starts-with(text(),'Data Aggregator@')]")).click();
+
+
 				} else {
 					//Old CAPC Navigation bar logic
 					WebElement admintab = driver.findElement(By.xpath("//h2[contains(.,'Administration')]"));
@@ -363,12 +365,12 @@ public class Navigation {
 			WebElement admintab = driver.findElement(By.xpath("//button[text()='Inventory']"));
 			action.moveToElement(admintab).perform();
 			Thread.sleep(500);
-			//wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Items']")));
-			WebElement items_menu = driver.findElement(By.xpath("//span[text()='Items']"));
-			action.moveToElement(items_menu).perform();
+
+			//WebElement items_menu = driver.findElement(By.xpath("//span[text()='Items']"));
+			//action.moveToElement(items_menu).perform();
 			//Wait while menu tab will appears
 			//wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("/html/body/div[16][not(contains(@class,'x-hide-offsets'))]")));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[16]")));
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[16]")));
 
 			WebElement device_components = driver.findElement(By.xpath("//span[text()='Device Components']"));
 			device_components.click();
@@ -398,9 +400,9 @@ public class Navigation {
 			WebElement admintab = driver.findElement(By.xpath("//button[text()='Inventory']"));
 			action.moveToElement(admintab).perform();
 			Thread.sleep(500);
-			WebElement items_menu = driver.findElement(By.xpath("//span[text()='Items']"));
-			action.moveToElement(items_menu).perform();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[16]")));
+			//WebElement items_menu = driver.findElement(By.xpath("//span[text()='Items']"));
+			//action.moveToElement(items_menu).perform();
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[16]")));
 
 			WebElement device_components = driver.findElement(By.xpath("//span[text()='Interfaces']"));
 			device_components.click();
@@ -538,6 +540,63 @@ public class Navigation {
 			//clickOnElement.get(0).click();			
 		} else return false;
 		
+		return true;
+	}
+
+
+	public boolean doubleClickOnXpath (String xpath) throws InterruptedException {
+
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+
+		if (browserName.equals("firefox")) {
+			log.debug("Firefox browser detected. Performing a javascript doubleclick.");
+			scrollToWebElement(driver.findElement(By.xpath(xpath)));
+			driver.findElement(By.xpath(xpath)).click();
+			((JavascriptExecutor)driver).executeScript("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('dblclick',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);",driver.findElement(By.xpath(xpath)));
+
+//			String doubleClickJS = "if(document.createEvent){var evObj = document.createEvent('MouseEvents');evObj.initEvent('dblclick',"+
+//			"true, false); arguments[0].dispatchEvent(evObj);} else if(document.createEventObject)"+
+//			"{ arguments[0].fireEvent('ondblclick');}";
+//			JavascriptExecutor js = (JavascriptExecutor) driver;
+//			js.executeScript(doubleClickJS, driver.findElement(By.xpath(xpath)));
+
+		} else {
+			log.debug("Non-Firefox browser detected. Performing an Actions doubleclick.");
+			Actions action = new Actions (driver);
+			WebElement elementToClick = driver.findElement(By.xpath(xpath));
+			action.doubleClick(elementToClick).build().perform();
+		}
+		return true;
+	}
+
+
+
+	public boolean doubleClickOnWebElement (WebElement element) throws InterruptedException {
+
+		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
+		String browserName = cap.getBrowserName().toLowerCase();
+
+		if (browserName.equals("firefox")) {
+			log.debug("Firefox browser detected. Performing a javascript doubleclick.");
+			scrollToWebElement(element);
+			element.click();
+			((JavascriptExecutor)driver).executeScript("var evt = document.createEvent('MouseEvents');" + "evt.initMouseEvent('dblclick',true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0,null);" + "arguments[0].dispatchEvent(evt);",element);
+		} else {
+			log.debug("Non-Firefox browser detected. Performing an Actions doubleclick.");
+			Actions action = new Actions (driver);
+			action.doubleClick(element).build().perform();
+		}
+		return true;
+	}
+
+
+
+	public boolean scrollToWebElement (WebElement element) {
+		log.debug("Scroll to WebElement "+ element);
+		Coordinates coordinate = ((Locatable)element).getCoordinates();
+		coordinate.onPage();
+		coordinate.inViewPort();
 		return true;
 	}
 	

@@ -19,6 +19,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -44,7 +45,7 @@ public class TestCase2 {
 	@Parameters({"Driver", "RemoteDriverURL","logLevel"})
 	public void beforeSetup(String browserDriver, @Optional("http://127.0.0.1:4444/wd/hub") String RemoteDriverURL, @Optional("") String logLevel) throws MalformedURLException {
 
-		log.info("CAPM Cert Automation Testing, version 4.9 (build 23032018)");
+		log.info("CAPM Cert Automation Testing, version 5.0 (build 04042018)");
 
 		if (!logLevel.equals("") && !logLevel.toLowerCase().equals("info")) {
 
@@ -71,7 +72,8 @@ public class TestCase2 {
 
 		DesiredCapabilities dc = new DesiredCapabilities();
 		switch (browserDriver.toLowerCase()) {
-			case "firefox":			driver = new FirefoxDriver();
+			case "firefox":			System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,"/dev/null");
+									driver = new FirefoxDriver();
 									driver.manage().window().maximize();
 									break;
 			case "chrome":			driver = new ChromeDriver();
@@ -118,8 +120,8 @@ public class TestCase2 {
 			ImageIO.write(image, "png", new File(outputDir+"\\"+formater.format(calendar.getTime())+".png"));
 			//Reporter.log("ERR: Error on method \""+methodName+"\". Screenshot saved under "+outputDir+"\\"+formater.format(calendar.getTime())+".png");
 		} */
-		//driver.quit();
-		driver.close();
+		driver.quit();
+		//driver.close();
 	}
 	
 	@Test(description="Create/Modify Monitoring Profile", groups = {"CreateModifyMP"})

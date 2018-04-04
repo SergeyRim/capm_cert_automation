@@ -1,0 +1,18 @@
+2018-04-04 15:58:23 [INFO ] TestCase2 - CAPM Cert Automation Testing, version 4.9 (build 23032018)
+2018-04-04 15:58:30 [INFO ] readmeParser - Executing readmeParser.getMFs
+2018-04-04 15:58:30 [INFO ] readmeParser - Loaded 5 metric families from readme file.
+2018-04-04 15:58:30 [INFO ] MonitoringProfiles - Edit monitoring profile "QA2"
+2018-04-04 15:58:37 [INFO ] MonitoringProfiles - Edit existing monitoring profile 'QA2'.
+2018-04-04 15:58:42 [INFO ] MonitoringProfiles - Removing existing selected MFs.
+2018-04-04 15:58:45 [INFO ] MonitoringProfiles - Adding new Metric Families.
+2018-04-04 15:58:52 [INFO ] TestCase2 - CAPM Cert Automation Testing, version 4.9 (build 23032018)
+2018-04-04 15:58:54 [INFO ] Simdepot - Getting IP for simID "30955" in "public" zone.
+2018-04-04 15:58:58 [INFO ] Simdepot - Getting current simID state.
+2018-04-04 15:59:00 [INFO ] Simdepot - SimID IP is 10.241.248.60
+2018-04-04 15:59:00 [INFO ] Simdepot - Checking sysName for IP 10.241.248.60
+2018-04-04 15:59:00 [INFO ] Simdepot - SNMP GET Response [1.3.6.1.2.1.1.5.0 = Sim30955:infopwb01]
+2018-04-04 15:59:00 [INFO ] Simdepot - SysName matches current simID.
+2018-04-04 15:59:04 [INFO ] DiscoveryProfiles - Edit Discovery profile "QA2".
+2018-04-04 15:59:10 [INFO ] DiscoveryProfiles - Found existing QA2 profile. Modify it.
+2018-04-04 15:59:20 [INFO ] DiscoveryProfiles - Running discover profile...
+2018-04-04 15:59:25 [INFO ] DiscoveryProfiles - Success.
