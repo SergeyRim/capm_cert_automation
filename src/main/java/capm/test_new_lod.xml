@@ -9,7 +9,7 @@
     <!-- Driver parameter values: "Firefox", "Chrome", "IE" OR "RemoteFirefox", "RemoteChrome"  -->
     <!-- logLevel parameter values: "INFO", "DEBUG", "ERROR"                                    -->
     <parameter name="logLevel" value="INFO"/>
-    <parameter name="Driver" value="RemoteFirefox"/>
+    <parameter name="Driver" value="RemoteChrome"/>
     <!--<parameter name="RemoteDriverURL" value="http://10.162.5.194:4444/wd/hub"/>-->
     <parameter name="RemoteDriverURL" value="http://10.242.23.195:4444/wd/hub"/>
 
@@ -47,7 +47,7 @@
     <!-- CHANGE VENDOR PRIORITY, CREATE MONITORING AND DISCOVER PROFILES -->
     <!-- =================================================== -->
 
-    <parameter name="simIDs" value="public:31350" />
+    <parameter name="simIDs" value="public:24915" />
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
     <parameter name="MonitoringDiscoveryProfileName" value="QA2" />
 
@@ -79,17 +79,17 @@
     <!--</test>-->
 
 
-    <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.5">-->
-        <!--<parameter name="capcServer" value="http://rimse01-E11045:8181"/>-->
-        <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt"/>-->
-        <!--<parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>-->
-        <!--<groups><run>-->
-            <!--<include name="CreateModifyMPAlreadyCertified"/>-->
-        <!--</run></groups>-->
-        <!--<classes>-->
-            <!--<class name="capm.TestCase2"/>-->
-        <!--</classes>-->
-    <!--</test>-->
+    <test name="Create/Modify Monitoring Profile For Already Certified US =PM3.5">
+        <parameter name="capcServer" value="http://rimse01-E11045:8181"/>
+        <parameter name="readmeFile" value="d:\CAPM\mf.txt"/>
+        <parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>
+        <groups><run>
+            <include name="CreateModifyMPAlreadyCertified"/>
+        </run></groups>
+        <classes>
+            <class name="capm.TestCase2"/>
+        </classes>
+    </test>
 
 
     <!--<test name="Create/Modify Discovery Profile (CAPM 3.5)">-->
@@ -104,7 +104,7 @@
     <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM 3.6)">-->
          <!--<parameter name="capcServer" value="http://rimse01-E10480:8181" />-->
         <!--<groups> <run>-->
-            <!--<include name="ChangeVP"/>-->
+            <!--&lt;!&ndash;<include name="ChangeVP"/>&ndash;&gt;-->
             <!--<include name="CreateModifyMP"/>-->
         <!--</run></groups>-->
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
@@ -127,7 +127,7 @@
     <!-- reportType parameter values: "legacy" or "device" -->
 
 
-    <parameter name="deviceName" value="Sim31350" />
+    <parameter name="deviceName" value="Sim24915" />
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
     <parameter name="reportType" value="Legacy" />
     <parameter name="outputDir" value="d:\Automation" />

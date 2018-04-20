@@ -19,13 +19,11 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -33,8 +31,11 @@ import org.testng.annotations.*;
 @Listeners({ScreenshotListener.class})
 public class TestCase2 {
 
+	String version = "5.0.2";
+	String build = "20042018";
+
 	private static final Logger log = LogManager.getLogger("TestCase2");
-	WebDriver driver;
+	RemoteWebDriver driver;
 
 	//To pass driver to ScreenshotListener
 	public WebDriver getDriver() {
@@ -45,7 +46,7 @@ public class TestCase2 {
 	@Parameters({"Driver", "RemoteDriverURL","logLevel"})
 	public void beforeSetup(String browserDriver, @Optional("http://127.0.0.1:4444/wd/hub") String RemoteDriverURL, @Optional("") String logLevel) throws MalformedURLException {
 
-		log.info("CAPM Cert Automation Testing, version 5.0 (build 04042018)");
+		log.info("CAPM Cert Automation Testing, version "+version+" (build "+build+")");
 
 		if (!logLevel.equals("") && !logLevel.toLowerCase().equals("info")) {
 
@@ -128,6 +129,7 @@ public class TestCase2 {
 	@Parameters({"readmeFile","capcServer","MonitoringDiscoveryProfileName"})
 	public void createModifyMP(String readmeFile, String capcServer, String MonitoringDiscoveryProfileName) throws Exception {
 			
+		log.info("Host: "+capcServer);
 		driver.get(capcServer);
 		
 		MonitoringProfiles mp = new MonitoringProfiles(driver);
@@ -155,6 +157,7 @@ public class TestCase2 {
 	@Parameters({"readmeFile","capcServer"})
 	public void changeVP(String readmeFile, String capcServer) throws Exception {
 				
+		log.debug("Host: "+capcServer);
 		driver.get(capcServer);
 		
 		readmeParser parser = new readmeParser();
@@ -182,6 +185,7 @@ public class TestCase2 {
 	@Parameters({"simIDs","capcServer","MonitoringDiscoveryProfileName"})
 	public void createModifyDP(String simIDs, String capcServer, String MonitoringDiscoveryProfileName) throws Exception {
 				
+		log.info("Host: "+capcServer);
 		Simdepot sim = new Simdepot(driver);
 		DiscoveryProfiles dp = new DiscoveryProfiles(driver);
 				
@@ -254,6 +258,7 @@ public class TestCase2 {
 	@Parameters({"capcServer", "readmeFile", "deviceName", "outputDir"})
 	public void verifyVCalreadyCertified(String capcServer, String readmeFile, String deviceName, String outputDir) throws Exception {
 		
+		log.info("Host: " + capcServer);
 		driver.get(capcServer);
 		
 		//Remove all special characters from deviceName
@@ -300,6 +305,7 @@ public class TestCase2 {
 	@Parameters({"capcServer", "deviceName", "daServer", "daPassword", "outputDir", "readmeFile", "reportType"})
 	public void createCustomReport(String capcServer, String deviceName, String daServer, String daPassword, String outputDir, String readmeFile, String reportType) throws Exception {
 
+		log.info("Host: " + capcServer);
 		readmeParser readme = new readmeParser();;
 		CreateReport createReport = new CreateReport (driver);
 		VCMF vcmf = new VCMF (driver);
@@ -332,21 +338,10 @@ public class TestCase2 {
 			log.fatal("No applicapable data parsed. Stopping current test-cases execution.");
 			return;
 		}
-		
-		//Generate a pop-up window
-		//JavascriptExecutor javascript = (JavascriptExecutor) driver;
-		//javascript.executeScript("alert('Parsing metrics. This can take awhile, please wait (pop-up window will be closed automatically).');");
-				
+
 		ArrayList<ArrayList<String>> metricsHR = new ArrayList<>();	
 		metricsHR = vcmf.convertMetricsToHRFormat(metrics,daServer,daPassword,fullOutputDir);
-		
-		/*
-		try {
-			driver.switchTo().alert().accept();
-		} catch (Exception e) {
-			Reporter.log("WARN: Exception was closed.");
-		}*/
-				
+
 		driver.get(capcServer);
 
 		LoginPage loginpage = PageFactory.initElements(driver,LoginPage.class);
@@ -452,6 +447,23 @@ public class TestCase2 {
 		loginpage.logIn();
 
 		Assert.assertTrue(regTest.searchTest());
+
+	}
+
+	@Test (description = "Import on-demand from CAPC GUI", groups = {"ImportOnDemandFromGUI"})
+	@Parameters({"capcServer", "ondemandLocation"})
+	public void importOndemand (String capcServer, String ondemandLocation) throws InterruptedException {
+
+		driver.get(capcServer);
+
+		LoginPage loginpage = PageFactory.initElements(driver,LoginPage.class);
+		loginpage.enterUsername("admin");
+		loginpage.enterPassword("admin");
+		loginpage.logIn();
+
+		OnDemand vcmf = new OnDemand(driver);
+
+		Assert.assertTrue(vcmf.uploadOndemandFromGUI(ondemandLocation));
 
 	}
 

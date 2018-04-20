@@ -90,6 +90,7 @@ public class Navigation {
 		int tryNum=0;
 
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+		Thread.sleep(200);
 
 		do {
 			try {
@@ -300,9 +301,8 @@ public class Navigation {
 		return this;
 	}
 	
-	public Navigation gotoVendorCertifications() throws InterruptedException {
+	public Boolean gotoVendorCertifications() throws InterruptedException {
 		
-						
 		WebElement monitoringConfiguration = getWebElement("//span[text()='Monitoring Configuration']");
 		
 		//Check if "Monitoring Configuration" tab is collapsed (not expanded)
@@ -315,8 +315,12 @@ public class Navigation {
 		
 		WebElement vendorCertifications = getWebElement("//span[text()='Vendor Certifications']");
 		vendorCertifications.click();
+
+		//Wait while Vendor Cert List will be loaded
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[text()='Factory']")));
+//		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath("//div[text()='Factory']"),1));
 		
-		return this;
+		return true;
 	}
 	
 	

@@ -51,7 +51,7 @@ public class TestCase3 {
 	public void createModifyVPGroup(String priorityFile, String daServer) throws Exception {
 		
 		readmeParser parser = new readmeParser();
-		VCMF vcmf = new VCMF (null);
+		PriorityGrouping vcmf = new PriorityGrouping ();
 		String prevMF;
 		String XMLandID[] = new String[2];
 		
