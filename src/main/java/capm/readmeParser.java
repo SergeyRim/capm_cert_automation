@@ -89,7 +89,7 @@ public class readmeParser {
 	
 	public ArrayList<ArrayList<String>> getMetrics(String readmeFileLocation){
 		
-		log.info("Run readmeParser.getMetrics");
+		log.debug("Run readmeParser.getMetrics");
 		ArrayList<ArrayList<String>> metricsList = new ArrayList<>();
 		int variable=0,metric=0;
 
@@ -356,6 +356,7 @@ public ArrayList<String> getVCsForAlreadyCertified(String readmeFileLocation){
 		replaceList.add(new String[]{"IPv4 Stats","IPv4"});
 		replaceList.add(new String[]{"Physical Memory","Memory"});
 		replaceList.add(new String[]{"Udp Stats","UDP Statistics"});
+		replaceList.add(new String[]{"Udp Statistics","UDP Statistics"});
 		replaceList.add(new String[]{"UDP Stats","UDP Statistics"});
 		replaceList.add(new String[]{"TCP Stats","TCP Statistics"});
 		replaceList.add(new String[]{"Disk","Generic Disk"});
@@ -363,10 +364,12 @@ public ArrayList<String> getVCsForAlreadyCertified(String readmeFileLocation){
 		replaceList.add(new String[]{"Environmental Sensor - Sound","Environmental Sensor - Sound Intensity"});
 		replaceList.add(new String[]{"Qos ClassMap","QoS ClassMap"});
 		replaceList.add(new String[]{"Environmental Sensor - VoltageAC","Environmental Sensor - Voltage AC "});
+		replaceList.add(new String[]{"Environmental Sensor - Voltage AC","Environmental Sensor - Voltage AC "});
 		replaceList.add(new String[]{"Environmental Sensor - Electric Current","Environmental Sensor - Electric Current Status"});
 		replaceList.add(new String[]{"Qos Traffic Shaping","QoS Traffic Shaping"});
 		replaceList.add(new String[]{"Qos RED","QoS RED"});
 		replaceList.add(new String[]{"VPDN System Stats","VPDN Tunnel"});
+		replaceList.add(new String[]{"Bgp Peer","BGP Peer"});
 
 		log.debug("Changing wrong metric families if needed.");
 		for (int i=0; i<mfArray.size();i++) {

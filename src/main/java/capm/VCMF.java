@@ -216,7 +216,7 @@ public class VCMF {
 			} else {
 				//Check if button "Next page" is disabled
 				if (driver.findElements(By.xpath("//div[@class='x-panel grid_border x-grid-panel']//button[contains(@class,'x-btn-text x-tbar-page-next')]/../../../../../../table[contains(@class,'x-item-disabled')]")).size() == 1) {
-					log.error("Cab't find VC \"" + vcname + "\" with \"" + mfname + "\" MF");
+					log.error("Can't find VC \"" + vcname + "\" with \"" + mfname + "\" MF");
 					return null;
 				} else {
 					isElementFound = false;
@@ -254,7 +254,7 @@ public class VCMF {
 			vcElementsFile.flush();
 			vcElementsFile.close();
 			log.error("No components for VC \"" + vcname + "\".");
-			return null;
+			return returnArray;
 		}
 
 		vcElementsFile.write("Components for VC: " + vcname + "\n");

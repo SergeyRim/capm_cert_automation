@@ -9,10 +9,10 @@
     <!-- Driver parameter values: "Firefox", "Chrome", "IE" OR "RemoteFirefox", "RemoteChrome"  -->
     <!-- logLevel parameter values: "INFO", "DEBUG", "ERROR"                                    -->
     <parameter name="logLevel" value="INFO"/>
-    <parameter name="Driver" value="RemoteFirefox"/>
+    <parameter name="Driver" value="Chrome"/>
     <!--<parameter name="RemoteDriverURL" value="http://10.162.5.194:4444/wd/hub"/>-->
-    <!--<parameter name="RemoteDriverURL" value="http://10.242.23.195:4444/wd/hub"/>-->
-    <parameter name="RemoteDriverURL" value="http://127.0.0.1:4444/wd/hub"/>
+    <parameter name="RemoteDriverURL" value="http://10.242.23.195:4444/wd/hub"/>
+
 
 
     <!-- NEWLY ADDED VC US -->
@@ -43,12 +43,20 @@
         <!--<classes> <class name="capm.TestCase3" /> </classes>-->
     <!--</test>-->
 
+    <!--<test name="Add Vendor Priority Grouping (CAPM 3.6)">-->
+        <!--<parameter name="daServer" value="rimse01-da-dev.bluesky.ca.com" />-->
+        <!--<groups> <run>-->
+            <!--<include name="AddVendorPriorityGrouping"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase3" /> </classes>-->
+    <!--</test>-->
+
 
     <!-- =================================================== -->
     <!-- CHANGE VENDOR PRIORITY, CREATE MONITORING AND DISCOVER PROFILES -->
     <!-- =================================================== -->
 
-    <parameter name="simIDs" value="public:31441" />
+    <parameter name="simIDs" value="public:31863" />
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
     <parameter name="MonitoringDiscoveryProfileName" value="QA2" />
 
@@ -105,7 +113,7 @@
         <!--<parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="CreateModifyMP"/>-->
-            <!--&lt;!&ndash;<include name="ChangeVP"/>&ndash;&gt;-->
+            <!--<include name="ChangeVP"/>-->
         <!--</run></groups>-->
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
     <!--</test>-->
@@ -119,18 +127,6 @@
     <!--</test>-->
 
 
-    <test name="Test">
-    <parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181" />
-        <parameter name="ondemandLocation" value="d:\CAPM\DE343355_Oneaccess_ondemand_3.2_3.5.zip" />
-    <groups> <run>
-    <include name="ImportOnDemandFromGUI"/>
-    </run></groups>
-    <classes> <class name="capm.TestCase2" /> </classes>
-    </test>
-
-
-
-
     <!-- =================================================== -->
     <!-- CREATE REPORTS -->
     <!-- =================================================== -->
@@ -138,9 +134,9 @@
     <!-- reportType parameter values: "legacy" or "device" -->
 
 
-    <parameter name="deviceName" value="qaimcert" />
+    <parameter name="deviceName" value="vgw" />
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
-    <parameter name="reportType" value="Legacy" />
+    <parameter name="reportType" value="Device" />
     <parameter name="outputDir" value="d:\Automation" />
 
 
@@ -163,7 +159,6 @@
         <!--</run></groups>-->
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
     <!--</test>-->
-
 
     <!--<test name="Create custom report (CAPM DEV)">-->
         <!--<parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181" />-->

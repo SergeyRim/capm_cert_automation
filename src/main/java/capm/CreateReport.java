@@ -32,7 +32,6 @@ public class CreateReport {
 		// metricType == 1     <-- mib metric format
 		// metricType == 2     <-- Human Readable metric format
 
-		log.debug("Executing CreateReport.createCustomTab for element "+element);
 		log.info("Will create report for element \""+element+"\"");
 
 		boolean isDeviceReport = false;
@@ -44,7 +43,7 @@ public class CreateReport {
 		
 		//Check if we run a device report from test parameters
 		if (reportType.toLowerCase().equals("device")) {
-			log.info("Device report type is selected from test parameters.");
+			log.info("Device report type is selected.");
 			isDeviceReport = true;			
 		} else {
 			//If legacy report type selected from test parameters, need to permorm checks
@@ -70,7 +69,7 @@ public class CreateReport {
 						isElementSelected = true; 
 					else {
 						isElementSelected = false;
-						log.info("Unbale to find element in 'Interfaces' page. Perform Device report.");
+						log.info("Unbale to find element in 'Interfaces' page. Will try to run Virtual Interface report.");
 					}
 				} catch (Exception e) {
 					log.info("Unbale to find 'Interfaces' page. Perform Device report.");
@@ -153,6 +152,11 @@ public class CreateReport {
 			log.debug("Adding \""+metrics.get(i)+"\" metric.");
 			//If metrics in Human Readable format
 			if (metricType==2) {
+
+				if (metrics.get(i).equals("Names") || metrics.get(i).equals("Indexes") || metrics.get(i).equals("Descriptions") || metrics.get(i).equals("Admin Status") || metrics.get(i).equals("Oper Status") || metrics.get(i).equals("Alias")) {
+					log.info("Skipping metric \""+metrics.get(i)+"\".");
+					continue;
+				}
 
 				int tryNum=0;
 				do {
@@ -312,16 +316,11 @@ public class CreateReport {
 		
 		//Wait while table saved and closed
 		if (isDeviceReport){
-			//if (!navi.waitForElement("//div/div/span[text()='IM Table (Device)']", 2))
-			//	return false;
 			wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div/div/span[text()='IM Table (Device)']"))));
 		} else {
-			//if (!navi.waitForElement("//div/div/span[text()='IM Table (Interface - Component)']", 2))
-			//	return false;
 			wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div/div/span[text()='IM Table (Interface - Component)']"))));
 		}
-		
-		
+
 		setup = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Save']")));
 		setup.click();
 		
@@ -354,8 +353,6 @@ public class CreateReport {
 				searchFields.get(i).sendKeys(element);
 				searchFields.get(i).sendKeys(Keys.ENTER);
 				Thread.sleep(500);
-				//Wait for Loading message
-				//navi.waitForElement("//div[contains(text(),'Loading')]", 2);
 				wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(text(),'Loading')]"))));
 			}
 			Thread.sleep(500);
@@ -369,15 +366,13 @@ public class CreateReport {
 		
 		while (tabsPerPage+1 <= setup1.size()) {
 			//Scroll page by clicking on tab field
-			//setup1.get(tabsPerPage).click();
 			je.executeScript("arguments[0].scrollIntoView(true);",setup1.get(tabsPerPage));
 			Thread.sleep(1000);
 			tabsPerPage+=4;
 			takeScreenshot (metrics.get(0)+"-"+metrics.get(1)+"_"+tabsPerPage,outputDir);			
 		}
 			
-		
-		log.debug("Delete created tab");
+				log.debug("Delete created tab");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='QA-"+timeStamp+"']"))).click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Delete Tab']"))).click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Yes']"))).click();
@@ -407,7 +402,8 @@ public class CreateReport {
 		
 		Navigation navi = new Navigation (driver);
 		log.debug("DragAndDrop new table");
-		
+
+		Thread.sleep(500);
 		WebElement moveFrom;
 		switch (reportType) {
 			case 1: moveFrom = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='x-panel-body pageBuilder-accordion-container-body x-panel-body-noheader x-panel-body-noborder']/div/div[1 or 2]/div[2]/div/div[2]/div/div/div/div/div[2]/div/div[4]/table/tbody/tr/td/div[text()='IM Table (Interface - Component)']")));
@@ -428,6 +424,7 @@ public class CreateReport {
 		Thread.sleep(500);
 		Action dragAndDrop = dragndrop.dragAndDrop(moveFrom, moveTo).build();
 		dragAndDrop.perform();
+		Thread.sleep(200);
 		
 		//Edit newly created table
 		log.debug("//Edit newly created table");
@@ -451,35 +448,33 @@ public class CreateReport {
 			//Wait while available metric list will be loaded
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl")));
 
-			log.debug("Get the 1st metric in Available metric list");
-			String firstMetricName = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl[1]/dt/em"))).getTagName();
-
-			int metricsCount=driver.findElements(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl")).size();
-						
-			log.debug("Verify if we need to change \"Metric Family\" or not");
+			log.debug("Verify if we need to change \"Metric Family\"...");
 			String currentMF = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='RIBTableItem/SettingHiddenValue']"))).getAttribute("value");
 			
 			if (!currentMF.contains(mfFacetName)) {
-				log.debug("Change \"Metric Family\" to appropriate MF");
+				log.debug("Getting the 1st metric in Available metric list and metric's count.");
+				String firstMetricName = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl[1]/dt/em"))).getText();
+				int metricsCount=driver.findElements(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl")).size();
+
+				log.debug("Changing \"Metric Family\" to "+mfFacetName);
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[3]/div[1]/div[@class='x-form-field-wrap x-form-field-trigger-wrap']/img"))).click();
 				Thread.sleep(2000);
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@id,'"+mfFacetName+"')]"))).click();
 				Thread.sleep(500);
 				
 				log.debug("Wait while metric's list will start reloading by comparing \"firstMetricName\" with current first metric name AND compare number of metrics (before and after reloading)");
+
 				String tmpMetric;
 				int tmpMetricsCount=0;
 				do {
+					log.debug("Sleeping 500ms.");
 					Thread.sleep(500);
-					//tmpMetric = navi.getWebElement("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl[1]/dt/em").getText();
 					tmpMetric = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl[1]/dt/em"))).getText();
 					tmpMetricsCount=driver.findElements(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl")).size();
 					
-				} while (tmpMetric.equals(firstMetricName) && tmpMetricsCount==metricsCount);
+				} while ((tmpMetric.equals(firstMetricName) && tmpMetricsCount==metricsCount) || tmpMetricsCount==0);
 									
 				log.debug("Wait while available metric list will be reloaded after changing MF");
-				//navi.waitForElement("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl", 1);
-				//navi.waitForElement("//table[@class='x-table-layout']/tbody/tr/td[3]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl", 1);
 				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl")));
 				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[3]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl")));
 				

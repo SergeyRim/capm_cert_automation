@@ -11,7 +11,9 @@ public class Runner {
 	public static void main(String[] args) throws IOException {
 
 	    if(args.length != 1) {
-	        System.out.println("Usage : <xmlFile>");
+			TestCase2 ver = new TestCase2();
+			System.out.println("CAPM Cert Automation Testing, version "+ver.version+" (build "+ver.build+")");
+			System.out.println("Usage: java -jar capm_cert.jar <xmlFile>");
 	        System.exit(-1);
 	    }
 

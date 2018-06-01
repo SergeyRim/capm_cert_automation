@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 
 public class TestCase3 {
 
-	private static final Logger log = LogManager.getLogger("TestCase3");
+	private static final Logger log = LogManager.getLogger("PriorityGroupTest");
 
 
 	@BeforeMethod(alwaysRun = true)
@@ -49,7 +49,9 @@ public class TestCase3 {
 	@Test(description="Add Vendor Priority Grouping", groups = {"AddVendorPriorityGrouping"})
 	@Parameters({"priorityFile","daServer"})
 	public void createModifyVPGroup(String priorityFile, String daServer) throws Exception {
-		
+
+		log.info("Host: " + daServer);
+
 		readmeParser parser = new readmeParser();
 		PriorityGrouping vcmf = new PriorityGrouping ();
 		String prevMF;

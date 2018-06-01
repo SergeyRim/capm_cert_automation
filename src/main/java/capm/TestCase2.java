@@ -31,10 +31,10 @@ import org.testng.annotations.*;
 @Listeners({ScreenshotListener.class})
 public class TestCase2 {
 
-	String version = "5.0.2";
-	String build = "20042018";
+	String version = "5.0.9";
+	String build = "01062018";
 
-	private static final Logger log = LogManager.getLogger("TestCase2");
+	private static final Logger log = LogManager.getLogger("MainTest");
 	RemoteWebDriver driver;
 
 	//To pass driver to ScreenshotListener
@@ -47,6 +47,9 @@ public class TestCase2 {
 	public void beforeSetup(String browserDriver, @Optional("http://127.0.0.1:4444/wd/hub") String RemoteDriverURL, @Optional("") String logLevel) throws MalformedURLException {
 
 		log.info("CAPM Cert Automation Testing, version "+version+" (build "+build+")");
+
+		//Bypass SSHj logging to ERROR level
+		org.apache.logging.log4j.core.config.Configurator.setLevel("net.schmizz.sshj",Level.ERROR);
 
 		if (!logLevel.equals("") && !logLevel.toLowerCase().equals("info")) {
 
@@ -369,7 +372,6 @@ public class TestCase2 {
 			String [] element = vcmf.getVcElement(deviceName, metricsHR.get(i).get(0), metricsHR.get(i).get(1), fullOutputDir);			// Send VC name in mib format
 			//String element = vcmf.getVcElement(vcmf.convertVCToHumanReadable(metrics.get(0).get(0)));   	// Send VC name in human readable format
 			if (element != null) {
-
 				// If Vendor Info file does not exists, will add a System Desription to it
 				if (!isVendorInfoExists) {
 					vendorCertifiedVCsFile.write("Device vendor: \n"+element[5]+"\n");
@@ -379,11 +381,16 @@ public class TestCase2 {
 					vendorCertifiedVCsFile.write("Newly certified VCs:\n\n");
 					isFirstString=false;
 				}
-
 				//Add VC in HR format to Vendor Info file
 				vendorCertifiedVCsFile.write(element[3]+"\n");
-				Assert.assertTrue(createReport.createCustomTab(deviceName, 2, "QA", metricsHR.get(i),element[0],fullOutputDir,reportType));
-				//createReport.createCustomTab(deviceName, 1, "QA", metrics.get(i),element);
+
+				//Check if current VC has no components. Shoul try to run Device report in this case.
+				if (element[0]==null) {
+					log.warn("No components for this VC. Will run a Device Report instead.");
+					Assert.assertTrue(createReport.createCustomTab(deviceName, 2, "QA", metricsHR.get(i),element[0],fullOutputDir,"Device"));
+                } else {
+					Assert.assertTrue(createReport.createCustomTab(deviceName, 2, "QA", metricsHR.get(i),element[0],fullOutputDir,reportType));
+                }
 			}
 		}
 		

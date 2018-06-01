@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.snmp4j.CommunityTarget;
 import org.snmp4j.PDU;
 import org.snmp4j.Snmp;
@@ -28,12 +29,14 @@ public class Simdepot {
 
 	public Simdepot (WebDriver driver) {
 		this.driver = driver;
+		wait = new WebDriverWait(driver,60, 200).withMessage("ExpectedConditions timeout.");
 	}
 
 	public ArrayList<String> getSimIP (String[] simIDs) throws InterruptedException, IOException {
 
 		ArrayList<String> simIPs = new ArrayList();
 		Navigation navi = new Navigation(driver);
+
 
 		for (int i=0; i<simIDs.length; i++) {
 
@@ -59,7 +62,7 @@ public class Simdepot {
 			driver.switchTo().defaultContent();
 			driver.switchTo().frame("present_selection");
 
-			//wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.partialLinkText(sim_zone_ip[1])));
+			wait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText(sim_zone_ip[1])));
 			WebElement clickOnSim = driver.findElement(By.partialLinkText(sim_zone_ip[1]));
 			clickOnSim.click();
 

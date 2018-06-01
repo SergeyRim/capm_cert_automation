@@ -44,4 +44,14 @@ public class OnDemand {
         return true;
     }
 
+
+//       <test name="Test">
+//    <parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181" />
+//        <parameter name="ondemandLocation" value="d:\CAPM\DE343355_Oneaccess_ondemand_3.2_3.5.zip" />
+//    <groups> <run>
+//    <include name="ImportOnDemandFromGUI"/>
+//    </run></groups>
+//    <classes> <class name="capm.TestCase2" /> </classes>
+//    </test>
+
 }
