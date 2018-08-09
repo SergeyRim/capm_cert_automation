@@ -17,31 +17,7 @@
 
 
     <parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>
-    <parameter name="simIDs" value="public:24915"/>
-
-
-    <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.2">-->
-        <!--<parameter name="capcServer" value="http://rimse01-E11099:8181"/>-->
-        <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt"/>-->
-        <!--<parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>-->
-        <!--<groups><run>-->
-             <!--<include name="CreateModifyMPAlreadyCertified"/>-->
-        <!--</run></groups>-->
-        <!--<classes>-->
-            <!--<class name="capm.TestCase2"/>-->
-        <!--</classes>-->
-    <!--</test>-->
-
-    <!--<test name="Create/Modify Discovery Profile For Already Certified US =PM3.2">-->
-        <!--<parameter name="capcServer" value="http://rimse01-E11099:8181"/>-->
-        <!--<groups><run>-->
-            <!--<include name="CreateModifyDP"/>-->
-        <!--</run></groups>-->
-        <!--<classes>-->
-            <!--<class name="capm.TestCase2"/>-->
-        <!--</classes>-->
-    <!--</test>-->
-
+    <parameter name="simIDs" value="public:32126"/>
 
 
     <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.5">-->
@@ -58,6 +34,28 @@
 
     <!--<test name="Create/Modify Discovery Profile For Already Certified US =PM3.5">-->
         <!--<parameter name="capcServer" value="http://rimse01-E11045:8181"/>-->
+        <!--<groups><run>-->
+            <!--<include name="CreateModifyDP"/>-->
+        <!--</run></groups>-->
+        <!--<classes>-->
+            <!--<class name="capm.TestCase2"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.6">-->
+        <!--<parameter name="capcServer" value="http://rimse01-E11099:8181"/>-->
+        <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt"/>-->
+        <!--<parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>-->
+        <!--<groups><run>-->
+            <!--<include name="CreateModifyMPAlreadyCertified"/>-->
+        <!--</run></groups>-->
+        <!--<classes>-->
+            <!--<class name="capm.TestCase2"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--<test name="Create/Modify Discovery Profile For Already Certified US =PM3.6">-->
+        <!--<parameter name="capcServer" value="http://rimse01-E11099:8181"/>-->
         <!--<groups><run>-->
             <!--<include name="CreateModifyDP"/>-->
         <!--</run></groups>-->
@@ -96,47 +94,39 @@
     <!--=========================-->
 
     <parameter name="readmeFile" value="d:\CAPM\mf.txt" />
-    <parameter name="deviceName" value="Sim24915" />
+    <parameter name="deviceName" value="Sim32126" />
     <parameter name="outputDir" value="d:\Automation" />
 
 
-     <test name="Verify VCs and components For Already Certified US =PM3.2">
-       <parameter name="capcServer" value="http://rimse01-E11099:8181" />
-       <groups> <run>
-            <include name="VerifyVCandComponentsAlreadyCertified"/>
-        </run></groups>
-       <classes> <class name="capm.TestCase2" /> </classes>
-     </test>
+    <!--<test name="Verify VCs and components For Already Certified US =PM3.5">-->
+    <!--<parameter name="capcServer" value="http://rimse01-E11045:8181" />-->
+    <!--<groups> <run>-->
+        <!--<include name="VerifyVCandComponentsAlreadyCertified"/>-->
+    <!--</run></groups>-->
+    <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
+
+    <!--<test name="Verify VCs and components For Already Certified US =PM3.6">-->
+        <!--<parameter name="capcServer" value="http://rimse01-E11099:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="VerifyVCandComponentsAlreadyCertified"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
 
 
-    <test name="Verify VCs and components For Already Certified US =PM3.5">
-        <parameter name="capcServer" value="http://rimse01-E11045:8181" />
-        <groups> <run>
-            <include name="VerifyVCandComponentsAlreadyCertified"/>
-        </run></groups>
-        <classes> <class name="capm.TestCase2" /> </classes>
-    </test>
-
-
-    <test name="Verify VCs and components For Already Certified US =PM DEV">
-        <parameter name="capcServer" value="http://rimse01-E10480:8181" />
-        <groups> <run>
-            <include name="VerifyVCandComponentsAlreadyCertified"/>
-        </run></groups>
-        <classes> <class name="capm.TestCase2" /> </classes>
-    </test>
+    <!--<test name="Verify VCs and components For Already Certified US =PM DEV">-->
+        <!--<parameter name="capcServer" value="http://rimse01-E10480:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="VerifyVCandComponentsAlreadyCertified"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
 
 
     <!-- POST steps -->
     <!-- DELETE DISCOVERED DEVICES -->
 
-    <!--<test name="Delete Discovered Devices _rimse01-pc1 (CAPM 3.2)">-->
-         <!--<parameter name="capcServer" value="http://rimse01-E11099:8181" />-->
-        <!--<groups> <run>-->
-            <!--<include name="DeleteDiscoveredDevices"/>-->
-        <!--</run></groups>-->
-        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
-     <!--</test>-->
 
      <!--<test name="Delete Discovered Devices _rimse01-pc2 (CAPM 3.5)">-->
          <!--<parameter name="capcServer" value="http://rimse01-E11045:8181" />-->
@@ -145,6 +135,14 @@
         <!--</run></groups>-->
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
      <!--</test>-->
+
+    <!--<test name="Delete Discovered Devices _rimse01-pc1 (CAPM 3.6)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-E11099:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="DeleteDiscoveredDevices"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
 
      <!--<test name="Delete Discovered Devices _rimse01-pc3 (CAPM DEV)">-->
          <!--<parameter name="capcServer" value="http://rimse01-E10480:8181" />-->

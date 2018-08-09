@@ -22,6 +22,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -31,8 +32,8 @@ import org.testng.annotations.*;
 @Listeners({ScreenshotListener.class})
 public class TestCase2 {
 
-	String version = "5.0.9";
-	String build = "01062018";
+	String version = "5.1";
+	String build = "09082018";
 
 	private static final Logger log = LogManager.getLogger("MainTest");
 	RemoteWebDriver driver;
@@ -91,6 +92,7 @@ public class TestCase2 {
 									driver = new RemoteWebDriver(new URL(RemoteDriverURL), dc);
 									//driver.manage().window().maximize();
 									driver.manage().window().setSize(new Dimension(1920,1080));
+									driver.setFileDetector(new LocalFileDetector());
 									break;
 			case "remotechrome"  :	dc.setBrowserName("chrome");
 									dc.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
@@ -101,8 +103,8 @@ public class TestCase2 {
 									chromeOptions.addArguments("--disable-gpu");
 									chromeOptions.addArguments("--window-size=1920,1080");
 									dc.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-
 									driver = new RemoteWebDriver(new URL(RemoteDriverURL), dc);
+									driver.setFileDetector(new LocalFileDetector());
 									break;
 		 	default: 	log.info("No correct driver specified. Will use FireFox driver by default.");
 	 					driver = new FirefoxDriver();
@@ -458,8 +460,9 @@ public class TestCase2 {
 	}
 
 	@Test (description = "Import on-demand from CAPC GUI", groups = {"ImportOnDemandFromGUI"})
-	@Parameters({"capcServer", "ondemandLocation"})
-	public void importOndemand (String capcServer, String ondemandLocation) throws InterruptedException {
+	@Parameters({"capcServer", "daServer", "ondemandLocation", "readmeFile"})
+	public void importOndemand (String capcServer, String daServer, String ondemandLocation, String readmeFile) throws InterruptedException, IOException {
+
 
 		driver.get(capcServer);
 
@@ -468,9 +471,55 @@ public class TestCase2 {
 		loginpage.enterPassword("admin");
 		loginpage.logIn();
 
-		OnDemand vcmf = new OnDemand(driver);
 
-		Assert.assertTrue(vcmf.uploadOndemandFromGUI(ondemandLocation));
+		//Get current MFs versions
+		ArrayList<String> mfList = new readmeParser().getMFs(readmeFile);
+		ArrayList<String[]> mfListWithVersion = new ArrayList<String[]>();
+		for (int i=0; i<mfList.size(); i++) {
+			String[] mfver = {mfList.get(i), new XMLParser().getVCMFVersionFromXMLResponse(new REST().getMFxml(daServer,mfList.get(i)))};
+			mfListWithVersion.add(mfver);
+		}
+
+		//Get current VCs versions
+		ArrayList<String> vcList = new readmeParser().getVCs(readmeFile);
+		ArrayList<String[]> vcListWithVersion = new ArrayList<String[]>();
+		for (int i=0; i<vcList.size(); i++) {
+			String[] vcver = {vcList.get(i), new XMLParser().getVCMFVersionFromXMLResponse(new REST().getVCxml(daServer,vcList.get(i)))};
+			vcListWithVersion.add(vcver);
+		}
+
+
+		//Apply on-demand
+		OnDemand ondemand = new OnDemand(driver);
+		Assert.assertTrue(ondemand.uploadOndemandFromGUI(ondemandLocation));
+
+
+		//Get updated MF/VC vesrions and compare
+		for (int i=0; i<mfList.size(); i++) {
+			String newVer = new XMLParser().getVCMFVersionFromXMLResponse(new REST().getMFxml(daServer,mfList.get(i)));
+			if (mfListWithVersion.get(i)[1]==null) {
+				log.info("MF: " + mfList.get(i)+" - New Metric Mafily.");
+			} else
+				if (mfListWithVersion.get(i)[1].equals(newVer)) {
+					log.info("MF: " + mfList.get(i) + " - version not changed.");
+				} else {
+				log.info("MF: " + mfList.get(i) + " - version changed from "+mfListWithVersion.get(i)[1]+" to "+newVer);
+			}
+		}
+
+
+		for (int i=0; i<vcList.size(); i++) {
+			String newVer = new XMLParser().getVCMFVersionFromXMLResponse(new REST().getVCxml(daServer,vcList.get(i)));
+			if (vcListWithVersion.get(i)[1]==null) {
+				log.info("VC: " + mfList.get(i)+" - New Vendor Cert.");
+			} else
+				if (vcListWithVersion.get(i)[1].equals(newVer)) {
+				log.info("VC: " + vcList.get(i)+" - version not changed.");
+				} else {
+					log.info("VC:" + vcList.get(i) + " - version changed from "+vcListWithVersion.get(i)[1]+" to "+newVer);
+				}
+		}
+
 
 	}
 

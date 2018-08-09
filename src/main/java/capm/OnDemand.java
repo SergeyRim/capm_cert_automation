@@ -7,7 +7,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.util.ArrayList;
 
 
 public class OnDemand {
@@ -30,19 +39,21 @@ public class OnDemand {
         navi.gotoVendorCertifications();
 
         navi.protectedClick("//button[text()='Import']","Unable to click on Import button");
+        Thread.sleep(500);
 
-        Thread.sleep(1000);
-
-        driver.setFileDetector(new LocalFileDetector());
         WebElement upload = driver.findElement(By.xpath("//input[@class='x-form-file']"));
         upload.sendKeys(ondemandLocation);
         Thread.sleep(500);
         navi.protectedClick("//tr[@class='x-toolbar-right-row']/.//button[text()='Import']","Unable to click on Import button.");
-
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.xpath("//span[text()='Import Vendor Certification']"))));
+        Thread.sleep(500);
+        log.info("On-demand imported succesfully.");
 
         return true;
     }
+
+
+
 
 
 //       <test name="Test">

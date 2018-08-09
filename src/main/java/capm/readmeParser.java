@@ -155,10 +155,7 @@ public class readmeParser {
 	
 
 public ArrayList<String> getMFs(String readmeFileLocation){
-	
-	log.info("Executing readmeParser.getMFs");
 	int mfCount = 0;
-	
 	//ArrayList<String> mfList = new ArrayList<String>();
 	HashSet<String> mfList = new HashSet<String>();
 	
@@ -194,6 +191,44 @@ public ArrayList<String> getMFs(String readmeFileLocation){
 	else 
 		return result;
 		
+	}
+
+	public ArrayList<String> getVCs(String readmeFileLocation){
+		int vcCount = 0;
+		HashSet<String> vcList = new HashSet<String>();
+
+		try (BufferedReader reader = new BufferedReader(
+				new InputStreamReader(
+						new FileInputStream(readmeFileLocation), StandardCharsets.UTF_8))){
+			String line;
+			String[] parts, parts2 = new String [2];
+
+			while ((line = reader.readLine()) != null) {
+				line = line.replace(" ", "");
+				if (line.contains("VC:")) {
+					parts = line.split("VC:");
+					if (parts[1].trim().charAt(0) != '<') {
+						parts2 = parts[1].split("\\|");
+						//Add a VC name as 1st element of String array
+						vcList.add(parts2[0].trim());
+						vcCount++;
+					}
+				}
+			}
+
+		} catch (IOException e) {
+			log.fatal("Can't read from buffer "+e.toString());
+		}
+
+		log.info("Loaded "+vcCount+" vendor certs from readme file.");
+
+		//ArrayList<String> result = new ArrayList<String>(new HashSet<String>(mfList));
+		ArrayList<String> result = new ArrayList<String>(vcList);
+
+		if (vcCount==0)
+			return null;
+		else
+			return result;
 	}
 
 

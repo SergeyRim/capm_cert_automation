@@ -17,29 +17,8 @@
 
 
     <parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>
-    <parameter name="simIDs" value="public:31819"/>
+    <parameter name="simIDs" value="public:32365"/>
 
-    <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.2">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc32.bluesky.ca.com:8181"/>-->
-        <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt"/>-->
-        <!--<parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>-->
-        <!--<groups><run>-->
-            <!--<include name="CreateModifyMPAlreadyCertified"/>-->
-        <!--</run></groups>-->
-        <!--<classes>-->
-            <!--<class name="capm.TestCase2"/>-->
-        <!--</classes>-->
-    <!--</test>-->
-
-    <!--<test name="Create/Modify Discovery Profile For Already Certified US =PM3.2">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc32.bluesky.ca.com:8181"/>-->
-        <!--<groups><run>-->
-            <!--<include name="CreateModifyDP"/>-->
-        <!--</run></groups>-->
-        <!--<classes>-->
-            <!--<class name="capm.TestCase2"/>-->
-        <!--</classes>-->
-    <!--</test>-->
 
     <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.5">-->
         <!--<parameter name="capcServer" value="http://rimse01-pc35.bluesky.ca.com:8181"/>-->
@@ -63,6 +42,28 @@
         <!--</classes>-->
     <!--</test>-->
 
+
+    <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.6">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc36.bluesky.ca.com:8181"/>-->
+        <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt"/>-->
+        <!--<parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>-->
+        <!--<groups><run>-->
+            <!--<include name="CreateModifyMPAlreadyCertified"/>-->
+        <!--</run></groups>-->
+        <!--<classes>-->
+            <!--<class name="capm.TestCase2"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--<test name="Create/Modify Discovery Profile For Already Certified US =PM3.6">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc36.bluesky.ca.com:8181"/>-->
+        <!--<groups><run>-->
+            <!--<include name="CreateModifyDP"/>-->
+        <!--</run></groups>-->
+        <!--<classes>-->
+            <!--<class name="capm.TestCase2"/>-->
+        <!--</classes>-->
+    <!--</test>-->
 
 
     <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM DEV">-->
@@ -93,20 +94,21 @@
     <!--=========================-->
 
     <parameter name="readmeFile" value="d:\CAPM\mf.txt" />
-    <parameter name="deviceName" value="Sim31819" />
+    <parameter name="deviceName" value="Sim32365" />
     <parameter name="outputDir" value="d:\Automation" />
 
 
-    <!--<test name="Verify VCs and components For Already Certified US =PM3.2">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc32.bluesky.ca.com:8181" />-->
+    <!--<test name="Verify VCs and components For Already Certified US =PM3.5">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc35.bluesky.ca.com:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="VerifyVCandComponentsAlreadyCertified"/>-->
         <!--</run></groups>-->
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
     <!--</test>-->
 
-    <!--<test name="Verify VCs and components For Already Certified US =PM3.5">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc35.bluesky.ca.com:8181" />-->
+
+    <!--<test name="Verify VCs and components For Already Certified US =PM3.6">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc36.bluesky.ca.com:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="VerifyVCandComponentsAlreadyCertified"/>-->
         <!--</run></groups>-->
@@ -126,16 +128,16 @@
     <!-- POST steps -->
     <!-- DELETE DISCOVERED DEVICES -->
 
-     <!--<test name="Delete Discovered Devices _rimse01-pc2 (CAPM 3.2)">-->
-         <!--<parameter name="capcServer" value="http://rimse01-pc32.bluesky.ca.com:8181" />-->
+    <!--<test name="Delete Discovered Devices _rimse01-pc1 (CAPM 3.5)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc35.bluesky.ca.com:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="DeleteDiscoveredDevices"/>-->
         <!--</run></groups>-->
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
-     <!--</test>-->
+    <!--</test>-->
 
-    <!--<test name="Delete Discovered Devices _rimse01-pc1 (CAPM 3.5)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc35.bluesky.ca.com:8181" />-->
+    <!--<test name="Delete Discovered Devices _rimse01-pc2 (CAPM 3.6)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc36.bluesky.ca.com:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="DeleteDiscoveredDevices"/>-->
         <!--</run></groups>-->
