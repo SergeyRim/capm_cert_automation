@@ -9,6 +9,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import Pages.LoginPage;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,8 +34,8 @@ import org.testng.annotations.*;
 @Listeners({ScreenshotListener.class})
 public class TestCase2 {
 
-	String version = "5.1";
-	String build = "09082018";
+	String version = "5.1.1";
+	String build = "13112018";
 
 	private static final Logger log = LogManager.getLogger("MainTest");
 	RemoteWebDriver driver;
@@ -162,7 +164,7 @@ public class TestCase2 {
 	@Parameters({"readmeFile","capcServer"})
 	public void changeVP(String readmeFile, String capcServer) throws Exception {
 				
-		log.debug("Host: "+capcServer);
+		log.info("Host: "+capcServer);
 		driver.get(capcServer);
 		
 		readmeParser parser = new readmeParser();
@@ -501,7 +503,7 @@ public class TestCase2 {
 				log.info("MF: " + mfList.get(i)+" - New Metric Mafily.");
 			} else
 				if (mfListWithVersion.get(i)[1].equals(newVer)) {
-					log.info("MF: " + mfList.get(i) + " - version not changed.");
+					log.info("MF: " + mfList.get(i) + " - version not changed ("+newVer+").");
 				} else {
 				log.info("MF: " + mfList.get(i) + " - version changed from "+mfListWithVersion.get(i)[1]+" to "+newVer);
 			}
@@ -514,9 +516,9 @@ public class TestCase2 {
 				log.info("VC: " + mfList.get(i)+" - New Vendor Cert.");
 			} else
 				if (vcListWithVersion.get(i)[1].equals(newVer)) {
-				log.info("VC: " + vcList.get(i)+" - version not changed.");
+				log.info("VC: " + vcList.get(i)+" - version not changed ("+newVer+").");
 				} else {
-					log.info("VC:" + vcList.get(i) + " - version changed from "+vcListWithVersion.get(i)[1]+" to "+newVer);
+					log.info("VC: " + vcList.get(i) + " - version changed from "+vcListWithVersion.get(i)[1]+" to "+newVer);
 				}
 		}
 

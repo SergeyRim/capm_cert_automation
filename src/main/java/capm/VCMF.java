@@ -76,7 +76,7 @@ public class VCMF {
 		for (int i=0;i<vcList.size();i++) {
 			log.info("Change vendor priority for \""+vcList.get(i)[0]+"\"");
 			navi.gotoVendorCertifications();
-			
+
 			WebElement search = navi.getWebElement("//input[@class='x-form-text x-form-field grid-filterbox x-form-empty-field']");
 			search.clear();
 			search.sendKeys(vcList.get(i)[0]);
@@ -88,7 +88,7 @@ public class VCMF {
 			//Wait while VC list will show only one VC :: Sometimes search results can retunr more than one vc, so changed expression to <1 VC
 			while (driver.findElements(By.xpath("//div[@class='x-panel polarisSelector x-box-item']/div[2]/div[1]/div/div/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div")).size()<1 && driver.findElements(By.xpath("//div[@class='x-panel polarisSelector x-box-item']/div[2]/div[1]/div/div/div/div[2]/div/div[1]/div[3]/div[text()='No Data To Display']")).size()<1)
 				Thread.sleep(500);
-			
+
 			//Get VC human readable name
 			WebElement hrVC = driver.findElement(By.xpath("//div[@class='x-panel polarisSelector x-box-item']/div[2]/div[1]/div/div/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div[1]/table/tbody/tr/td[2]/div"));
 			String hrVCname = hrVC.getText();
@@ -507,7 +507,7 @@ public class VCMF {
 		        	metricsFile.write("\n");
 		            
 		        	for (int j=2; j<mibMetrics.get(i).size(); j++) {
-		               	log.debug("Get display name for metric: "+mibMetrics.get(i).get(1));
+		               	log.debug("Get display name for metric: "+mibMetrics.get(i).get(j).toLowerCase());
 		        		//Get Display Name for metric
 		            	//command = "PR=`cat /opt/IMDataAggregator/apache-karaf-2.4.3/certifications/CA/metric_families/properties/"+mibMetrics.get(i).get(1)+".properties |grep 'attribute."+mibMetrics.get(i).get(j).toLowerCase()+".attributedisplayname' | awk -F= '{print $2}'`; if [ \"$PR\" == \"\" ]; then echo 'NotFound'; else echo $PR; fi\n";
 						command = "PR=`cat /opt/IMDataAggregator/*/certifications/CA*/metric_families/properties/"+mibMetrics.get(i).get(1)+".properties |grep 'attribute."+mibMetrics.get(i).get(j).toLowerCase()+".attributedisplayname' | awk -F= '{print $2}' | head -1`; if [ \"$PR\" == \"\" ]; then echo 'NotFound'; else echo $PR; fi\n";
@@ -520,7 +520,7 @@ public class VCMF {
 			            String result = String.valueOf(buffer).trim();
 			            if (result.equals("NotFound")) {
 			            	hrMetrics.get(i).add(mibMetrics.get(i).get(j));
-			            	log.debug("Metric display name not found.");
+			            	log.debug("Metric display name not found for "+mibMetrics.get(i).get(j).toLowerCase());
 			            } else {
 			            	hrMetrics.get(i).add(result);
 			            	metricsFile.write(result);

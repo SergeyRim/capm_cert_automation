@@ -57,10 +57,10 @@
     <!-- =================================================== -->
 
     <!--<test name="Upload on-demand and verify MF/VC Version change.">-->
-        <!--<parameter name="ondemandLocation" value="d:\CAPM\DE368581_Trend_Micro_S6100N.zip" />-->
+        <!--<parameter name="ondemandLocation" value="d:\CAPM\On-Demand-3.5_3.6_DE390797.zip" />-->
         <!--<parameter name="capcServer" value="http://rimse01-pc36.bluesky.ca.com:8181" />-->
         <!--<parameter name="daServer" value="rimse01-da36.bluesky.ca.com" />-->
-        <!--<parameter name="Driver" value="Firefox"/>-->
+        <!--<parameter name="Driver" value="Chrome"/>-->
         <!--<groups> <run>-->
             <!--<include name="ImportOnDemandFromGUI"/>-->
         <!--</run></groups>-->
@@ -72,77 +72,77 @@
     <!-- CHANGE VENDOR PRIORITY, CREATE MONITORING AND DISCOVER PROFILES -->
     <!-- =================================================== -->
 
-    <parameter name="simIDs" value="public:32320" />
+    <parameter name="simIDs" value="public:32980" />
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
     <parameter name="MonitoringDiscoveryProfileName" value="QA2" />
 
 
 
-    <test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM 3.5)">
-        <parameter name="capcServer" value="http://rimse01-pc35.bluesky.ca.com:8181" />
-        <groups> <run>
-            <include name="CreateModifyMP"/>
-            <include name="ChangeVP"/>
-        </run></groups>
-        <classes> <class name="capm.TestCase2" /> </classes>
-    </test>
+    <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM 3.5)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc35.bluesky.ca.com:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="CreateModifyMP"/>-->
+            <!--<include name="ChangeVP"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
 
-    <test name="Create/Modify Discovery Profile (CAPM 3.5)">
-        <parameter name="capcServer" value="http://rimse01-pc35.bluesky.ca.com:8181" />
-        <groups> <run>
-            <include name="CreateModifyDP"/>
-        </run></groups>
-        <classes> <class name="capm.TestCase2" /> </classes>
-    </test>
-
-
-    <test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM 3.6)">
-        <parameter name="capcServer" value="http://rimse01-pc36.bluesky.ca.com:8181" />
-        <groups> <run>
-            <include name="ChangeVP"/>
-            <include name="CreateModifyMP"/>
-        </run></groups>
-        <classes> <class name="capm.TestCase2" /> </classes>
-    </test>
-
-    <test name="Create/Modify Monitoring Profile For Already Certified US =PM3.6">
-        <parameter name="capcServer" value="http://rimse01-pc36.bluesky.ca.com:8181"/>
-        <parameter name="readmeFile" value="d:\CAPM\mf.txt"/>
-        <parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>
-        <groups><run>
-            <include name="CreateModifyMPAlreadyCertified"/>
-        </run></groups>
-        <classes>
-            <class name="capm.TestCase2"/>
-        </classes>
-    </test>
+    <!--<test name="Create/Modify Discovery Profile (CAPM 3.5)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc35.bluesky.ca.com:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="CreateModifyDP"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
 
 
-    <test name="Create/Modify Discovery Profile (CAPM 3.6)">
-        <parameter name="capcServer" value="http://rimse01-pc36.bluesky.ca.com:8181" />
-        <groups> <run>
-            <include name="CreateModifyDP"/>
-        </run></groups>
-        <classes> <class name="capm.TestCase2" /> </classes>
-    </test>
+    <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM 3.6)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc36.bluesky.ca.com:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="ChangeVP"/>-->
+            <!--<include name="CreateModifyMP"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
+
+    <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.6">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc36.bluesky.ca.com:8181"/>-->
+        <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt"/>-->
+        <!--<parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>-->
+        <!--<groups><run>-->
+            <!--<include name="CreateModifyMPAlreadyCertified"/>-->
+        <!--</run></groups>-->
+        <!--<classes>-->
+            <!--<class name="capm.TestCase2"/>-->
+        <!--</classes>-->
+    <!--</test>-->
 
 
-    <test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM DEV)">
-        <parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181" />
-        <groups> <run>
-            <include name="CreateModifyMP"/>
-            <include name="ChangeVP"/>
-        </run></groups>
-        <classes> <class name="capm.TestCase2" /> </classes>
-    </test>
+    <!--<test name="Create/Modify Discovery Profile (CAPM 3.6)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc36.bluesky.ca.com:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="CreateModifyDP"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
 
-    <test name="Create/Modify Discovery Profile (CAPM DEV)">
-        <parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181" />
-        <groups> <run>
-            <include name="CreateModifyDP"/>
-        </run></groups>
-        <classes> <class name="capm.TestCase2" /> </classes>
-    </test>
+
+    <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM DEV)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="CreateModifyMP"/>-->
+            <!--<include name="ChangeVP"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
+
+    <!--<test name="Create/Modify Discovery Profile (CAPM DEV)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="CreateModifyDP"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
 
 
     <!-- =================================================== -->
@@ -152,7 +152,7 @@
     <!-- reportType parameter values: "legacy" or "device" -->
 
 
-    <parameter name="deviceName" value="Sim32320" />
+    <parameter name="deviceName" value="MAN-EPE" />
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
     <parameter name="reportType" value="Legacy" />
     <parameter name="outputDir" value="d:\Automation" />
@@ -229,8 +229,6 @@
         <!--</run></groups>-->
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
     <!--</test>-->
-
-
 
 
 

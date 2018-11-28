@@ -2,12 +2,15 @@ package capm;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import Pages.SimdepotPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
@@ -36,6 +39,7 @@ public class Simdepot {
 
 		ArrayList<String> simIPs = new ArrayList();
 		Navigation navi = new Navigation(driver);
+		SimdepotPage page = PageFactory.initElements(driver, SimdepotPage.class);
 
 
 		for (int i=0; i<simIDs.length; i++) {
@@ -52,19 +56,21 @@ public class Simdepot {
 			String simIP = "Not Initialized";
 			Boolean isGotStatus, isClicked;
 			Integer startCount=0;
-			driver.switchTo().frame("control");
+
+			/*driver.switchTo().frame("control");
 			WebElement searchField = driver.findElement(By.id("simidIn"));
 			searchField.clear();
 			searchField.sendKeys(sim_zone_ip[1]);
 			searchField.sendKeys(Keys.ENTER);
 			Thread.sleep(500);
-
 			driver.switchTo().defaultContent();
-			driver.switchTo().frame("present_selection");
+			driver.switchTo().frame("present_selection");*/
+			page.search(sim_zone_ip[1]);
 
-			wait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText(sim_zone_ip[1])));
-			WebElement clickOnSim = driver.findElement(By.partialLinkText(sim_zone_ip[1]));
-			clickOnSim.click();
+			//wait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText(sim_zone_ip[1])));
+			//WebElement clickOnSim = driver.findElement(By.partialLinkText(sim_zone_ip[1]));
+			//clickOnSim.click();
+			page.clickOnSimID(sim_zone_ip[1]);
 
 			//Wait while Public tab will be loaded
 			while (driver.findElements(By.xpath("//div[@id='loadedsimsWaiting' and @style='display: none;']")).size()<1)

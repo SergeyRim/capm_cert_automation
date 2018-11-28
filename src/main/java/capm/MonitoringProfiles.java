@@ -1,5 +1,6 @@
 package capm;
 
+import Pages.NavigationPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-
+import org.openqa.selenium.support.PageFactory;
 
 
 public class MonitoringProfiles {
@@ -24,14 +25,17 @@ public class MonitoringProfiles {
 	public Boolean editMonitoringProfiles (int mpType, ArrayList<String> metrics, String mpName) throws InterruptedException {
 		
 		log.info("Edit monitoring profile \""+mpName+"\"");
-
 		// mpType = 1     Metric Families in mib format like NormalizedIntegratedAdaptiveRateDSLInfo
 		// mpType = 2     Metric Families in human readable format like Integrated Adaptive Rate DSL
 		
 		Actions action = new Actions (driver);
 		
 		Navigation navi = new Navigation (driver);
+		NavigationPage navigationPage = PageFactory.initElements(driver, NavigationPage.class);
+
 		navi.selectDataAggregator();
+		//navigationPage.navigateToDataAggregator();
+
 		navi.gotoMonitoringProfiles();
 		boolean isNewMP = false;
 		boolean isClicked = true;

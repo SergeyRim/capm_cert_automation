@@ -5,8 +5,6 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.HasInputDevices;
-import org.openqa.selenium.interactions.Mouse;
 import org.openqa.selenium.interactions.internal.Coordinates;
 import org.openqa.selenium.interactions.internal.Locatable;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -199,12 +197,12 @@ public class Navigation {
 
 	public Boolean selectDataAggregator() throws InterruptedException {
 		
-		while (driver.findElements(By.id("globalSearchField")).size()<1)
-			Thread.sleep(1000);
+		//while (driver.findElements(By.id("globalSearchField")).size()<1)
+		Thread.sleep(1000);
 
 		int tryNum=0;
 		int maxNumberToTry=15;
-		
+		Thread.sleep(3000);
 		boolean isClicked;
 		do {
 			try {
@@ -304,19 +302,23 @@ public class Navigation {
 	}
 	
 	public Boolean gotoVendorCertifications() throws InterruptedException {
-		
-		WebElement monitoringConfiguration = getWebElement("//span[text()='Monitoring Configuration']");
-		
+
 		//Check if "Monitoring Configuration" tab is collapsed (not expanded)
 		// Alternate ->> //span[text()='Monitoring Configuration']/../../../../div[2][contains(@class,'x-panel-collapsed')]
-		
-		if (driver.findElements(By.xpath("//span[text()='Monitoring Configuration']/../../parent::div[contains(@class,'x-panel-collapsed')]")).size()>0) {
+
+		//while (driver.findElements(By.xpath("//span[text()='Monitoring Configuration']/../../parent::div[contains(@class,'x-panel-collapsed')]")).size()>0) {
+		while (driver.findElements(By.xpath("//div[contains(@class,'leftHandMenu x-box-item')]/div[2][contains(@class,'x-panel-collapsed')]")).size()>0) {
+			WebElement monitoringConfiguration = getWebElement("//span[text()='Monitoring Configuration']");
 			monitoringConfiguration.click();
 			Thread.sleep(500);
 		}
-		
+
 		WebElement vendorCertifications = getWebElement("//span[text()='Vendor Certifications']");
-		vendorCertifications.click();
+
+		//NOTE: Standart click not working properly in RemoteWebDriver in this point. Use Actions click instead.
+		//vendorCertifications.click();
+		Actions act = new Actions(driver);
+		act.click(vendorCertifications).build().perform();
 
 		//Wait while Vendor Cert List will be loaded
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[text()='Factory']")));
