@@ -34,8 +34,8 @@ import org.testng.annotations.*;
 @Listeners({ScreenshotListener.class})
 public class TestCase2 {
 
-	String version = "5.1.1";
-	String build = "13112018";
+	String version = "5.1.3";
+	String build = "25012018";
 
 	private static final Logger log = LogManager.getLogger("MainTest");
 	RemoteWebDriver driver;
@@ -513,7 +513,7 @@ public class TestCase2 {
 		for (int i=0; i<vcList.size(); i++) {
 			String newVer = new XMLParser().getVCMFVersionFromXMLResponse(new REST().getVCxml(daServer,vcList.get(i)));
 			if (vcListWithVersion.get(i)[1]==null) {
-				log.info("VC: " + mfList.get(i)+" - New Vendor Cert.");
+				log.info("VC: " + vcList.get(i)+" - New Vendor Cert.");
 			} else
 				if (vcListWithVersion.get(i)[1].equals(newVer)) {
 				log.info("VC: " + vcList.get(i)+" - version not changed ("+newVer+").");

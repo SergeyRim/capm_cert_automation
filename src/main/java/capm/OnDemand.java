@@ -27,7 +27,7 @@ public class OnDemand {
 
     public OnDemand (RemoteWebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver,20);
+        wait = new WebDriverWait(driver,40);
     }
 
 

@@ -37,14 +37,18 @@ public class SimdepotPage {
         driver.switchTo().frame("present_selection");
     }
 
+    public boolean checkIfSimExists (final String simID) {
+        wait.until(ExpectedConditions.or(ExpectedConditions.presenceOfAllElementsLocatedBy(By.partialLinkText(simID)), ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//font[@class='sim_title' and text()=' Search yielded no results ']"))));
+        if (driver.findElements(By.partialLinkText(simID)).size() < 1) {
+            return false;
+        } else return true;
+    }
+
+
     public void clickOnSimID (final String simID) {
         wait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText(simID)));
         driver.findElement(By.partialLinkText(simID)).click();
     }
-
-
-
-
 
 
 }

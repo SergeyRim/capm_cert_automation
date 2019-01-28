@@ -41,7 +41,6 @@ public class Simdepot {
 		Navigation navi = new Navigation(driver);
 		SimdepotPage page = PageFactory.initElements(driver, SimdepotPage.class);
 
-
 		for (int i=0; i<simIDs.length; i++) {
 
 			String[] sim_zone_ip = simIDs[i].split(":");
@@ -66,6 +65,12 @@ public class Simdepot {
 			driver.switchTo().defaultContent();
 			driver.switchTo().frame("present_selection");*/
 			page.search(sim_zone_ip[1]);
+
+			if (!page.checkIfSimExists(sim_zone_ip[1])) {
+				log.error("SimID "+sim_zone_ip[1]+" not found!");
+				driver.switchTo().defaultContent();
+				continue;
+			}
 
 			//wait.until(ExpectedConditions.elementToBeClickable(By.partialLinkText(sim_zone_ip[1])));
 			//WebElement clickOnSim = driver.findElement(By.partialLinkText(sim_zone_ip[1]));

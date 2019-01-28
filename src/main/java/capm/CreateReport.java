@@ -427,10 +427,9 @@ public class CreateReport {
 		Thread.sleep(200);
 		
 		//Edit newly created table
-		log.debug("//Edit newly created table");
-		WebElement setup = driver.findElement(By.xpath("//div[@class='x-grid3-body']/div["+tableNum+"]/table/tbody/tr/td[2]/div/div"));
-		setup.click();
-		
+		log.debug("Edit newly created table");
+		driver.findElement(By.xpath("//div[@class='x-grid3-body']/div["+tableNum+"]/table/tbody/tr/td/div/div[@class='pageBuilder-uneditButton']")).click();
+
 		log.debug("Wait while available and selected metric list will be loaded");
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[1]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl")));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@class='x-table-layout']/tbody/tr/td[3]/div/fieldset/div/div[1]/div/div[2]/div[@class='x-list-body-inner']/dl")));
