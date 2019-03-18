@@ -159,6 +159,7 @@ public class MonitoringProfiles {
 			navi.doubleClickOnXpath("//dl/dt/em[text()='All Routers']");
 			navi.doubleClickOnXpath("//dl/dt/em[text()='All Servers']");
 			navi.doubleClickOnXpath("//dl/dt/em[text()='All Switches']");
+			navi.doubleClickOnXpath("//dl/dt/em[text()='All Devices']");
 			
 			saveButton = driver.findElement(By.xpath("//button[@type='button' and text()='Save']"));
 			saveButton.click();	

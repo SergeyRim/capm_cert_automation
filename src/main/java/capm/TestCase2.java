@@ -34,8 +34,8 @@ import org.testng.annotations.*;
 @Listeners({ScreenshotListener.class})
 public class TestCase2 {
 
-	String version = "5.1.3";
-	String build = "25012018";
+	String version = "5.1.4";
+	String build = "05032019";
 
 	private static final Logger log = LogManager.getLogger("MainTest");
 	RemoteWebDriver driver;
@@ -104,6 +104,7 @@ public class TestCase2 {
 									chromeOptions.addArguments("--start-maximized");
 									chromeOptions.addArguments("--disable-gpu");
 									chromeOptions.addArguments("--window-size=1920,1080");
+                                    //chromeOptions.addArguments("--disable-dev-shm-usage");
 									dc.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 									driver = new RemoteWebDriver(new URL(RemoteDriverURL), dc);
 									driver.setFileDetector(new LocalFileDetector());
