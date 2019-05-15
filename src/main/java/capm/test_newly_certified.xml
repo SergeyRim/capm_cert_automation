@@ -84,7 +84,7 @@
     <!-- CHANGE VENDOR PRIORITY, CREATE MONITORING AND DISCOVER PROFILES -->
     <!-- =================================================== -->
 
-    <parameter name="simIDs" value="public:33753" />
+    <parameter name="simIDs" value="public:21388" />
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
     <parameter name="MonitoringDiscoveryProfileName" value="QA2" />
 
@@ -125,22 +125,22 @@
     <!--</test>-->
 
 
-    <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM DEV)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181" />-->
-        <!--<groups> <run>-->
-            <!--<include name="CreateModifyMP"/>-->
-            <!--<include name="ChangeVP"/>-->
-        <!--</run></groups>-->
-        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
-    <!--</test>-->
+    <test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM DEV)">
+        <parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181" />
+        <groups> <run>
+            <include name="CreateModifyMP"/>
+            <include name="ChangeVP"/>
+        </run></groups>
+        <classes> <class name="capm.TestCase2" /> </classes>
+    </test>
 
-    <!--<test name="Create/Modify Discovery Profile (CAPM DEV)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181" />-->
-        <!--<groups> <run>-->
-            <!--<include name="CreateModifyDP"/>-->
-        <!--</run></groups>-->
-        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
-    <!--</test>-->
+    <test name="Create/Modify Discovery Profile (CAPM DEV)">
+        <parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181" />
+        <groups> <run>
+            <include name="CreateModifyDP"/>
+        </run></groups>
+        <classes> <class name="capm.TestCase2" /> </classes>
+    </test>
 
 
     <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.7">-->
@@ -163,7 +163,7 @@
     <!-- reportType parameter values: "legacy" or "device" -->
 
 
-    <parameter name="deviceName" value="Sim" />
+    <parameter name="deviceName" value="Sim21388" />
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
     <parameter name="reportType" value="Legacy" />
     <parameter name="outputDir" value="d:\Automation" />
