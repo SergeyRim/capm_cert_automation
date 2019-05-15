@@ -85,18 +85,19 @@ public class VCMF {
 			while (driver.findElements(By.xpath("//div[contains(text(),'Loading')]")).size()>0)
 				Thread.sleep(500);
 			
-			//Wait while VC list will show only one VC :: Sometimes search results can retunr more than one vc, so changed expression to <1 VC
-			while (driver.findElements(By.xpath("//div[@class='x-panel polarisSelector x-box-item']/div[2]/div[1]/div/div/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div")).size()<1 && driver.findElements(By.xpath("//div[@class='x-panel polarisSelector x-box-item']/div[2]/div[1]/div/div/div/div[2]/div/div[1]/div[3]/div[text()='No Data To Display']")).size()<1)
+			log.debug("Wait while VC list will show only one VC :: Sometimes search results can retunr more than one vc, so changed expression to <1 VC");
+			while (driver.findElements(By.xpath("//div[@class='x-grid3-cell-inner x-grid3-col-1 x-unselectable' and not(@*[name()='ext:qtip'])]")).size()<1 && driver.findElements(By.xpath("//div[@class='x-panel polarisSelector x-box-item']/div[2]/div[1]/div/div/div/div[2]/div/div[1]/div[3]/div[text()='No Data To Display']")).size()<1)
 				Thread.sleep(500);
 
-			//Get VC human readable name
-			WebElement hrVC = driver.findElement(By.xpath("//div[@class='x-panel polarisSelector x-box-item']/div[2]/div[1]/div/div/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div[1]/table/tbody/tr/td[2]/div"));
+			log.debug("//Get VC human readable name");
+			WebElement hrVC = driver.findElement(By.xpath("//div[@class='x-grid3-cell-inner x-grid3-col-1 x-unselectable' and not(@*[name()='ext:qtip'])]"));
 			String hrVCname = hrVC.getText();
 			
+			log.debug("Waiting for loading");
 			while (driver.findElements(By.xpath("//div[contains(text(),'Loading')]")).size()>0 || driver.findElements(By.xpath("//div[contains(text(),'No Data To Display')]")).size()>0)
 				Thread.sleep(500);
 			
-			//Click on parent MF link
+			log.debug("//Click on parent MF link");
 			if (!navi.protectedClick("//a[@title='Navigate to Metric Family definition' and contains(@href,'"+vcList.get(i)[1]+"')]", "Unable to click on parent Metric Family link. Retrying."))
 				return false;
 
@@ -246,7 +247,7 @@ public class VCMF {
 		while (driver.findElements(By.xpath("//span[text()='Name']")).size() < 1 && driver.findElements(By.xpath("//div[text()='No components to display for this metric family']")).size() < 1)
 			Thread.sleep(500);
 
-		List<WebElement> elements = driver.findElements(By.xpath("//div[contains (@class,'x-panel') and contains (@class,'x-box-item')]/div[2]/div[1]/div/div/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div/table/tbody/tr/td[2]/div"));
+		List<WebElement> elements = driver.findElements(By.xpath("//div[contains (@class,'x-panel') and contains (@class,'x-box-item')]/div[2]/div[1]//td[2]/div[@class='x-grid3-cell-inner x-grid3-col-1 x-unselectable']"));
 
 		if (driver.findElements(By.xpath("//div[text()='No components to display for this metric family']")).size() > 0 && elements.size() == 0) {
 			vcElementsFile.write("No Components for VC: " + vcname + "\n");
@@ -355,7 +356,7 @@ public class VCMF {
 //				continue;
 //			}
 
-			WebElement searchField = navi.getWebElement("//div[1]/div/div[2]/div/table/tbody/tr/td[1]/table/tbody/tr/td[2]/div/input");
+			WebElement searchField = navi.getWebElement("//input[@id='cmp_1018130_711_filterTextBox']");
 			searchField.clear();
 			searchField.sendKeys(vcList.get(i));
 			searchField.sendKeys(Keys.ENTER);
@@ -373,10 +374,10 @@ public class VCMF {
 				Thread.sleep(1000);
 
 				log.debug("Waiting while components list will be loaded.");
-				while ((driver.findElements(By.xpath("//div[contains (@class,'x-panel') and contains (@class,'x-box-item')]/div[2]/div[1]/div/div/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div/table/tbody/tr/td[2]/div")).size()<1 && driver.findElements(By.xpath("//div[text()='No components to display for this metric family']")).size()<1 && driver.findElements(By.xpath("//div[text()='Select a metric family to view components']")).size()<1 ) || driver.findElements(By.xpath("//div[contains(text(),'Loading')]")).size()>0)
+				while ((driver.findElements(By.xpath("//div[contains (@class,'x-panel') and contains (@class,'x-box-item')]/div[2]//td[2]/div[@class='x-grid3-cell-inner x-grid3-col-1 x-unselectable']")).size()<1 && driver.findElements(By.xpath("//div[text()='No components to display for this metric family']")).size()<1 && driver.findElements(By.xpath("//div[text()='Select a metric family to view components']")).size()<1 ) || driver.findElements(By.xpath("//div[contains(text(),'Loading')]")).size()>0)
 					Thread.sleep(500);
 
-				List<WebElement> elements = driver.findElements(By.xpath("//div[contains (@class,'x-panel') and contains (@class,'x-box-item')]/div[2]/div[1]/div/div/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div/table/tbody/tr/td[2]/div"));
+				List<WebElement> elements = driver.findElements(By.xpath("//div[contains (@class,'x-panel') and contains (@class,'x-box-item')]/div[2]//td[2]/div[@class='x-grid3-cell-inner x-grid3-col-1 x-unselectable']"));
 
 				metricsFile.write("Files for VC: "+vcList.get(i)+"\n");
 				log.debug("Writing list of components to file.");

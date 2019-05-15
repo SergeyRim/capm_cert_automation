@@ -8,28 +8,28 @@
     <!-- Global parameters -->
     <!-- Driver parameter values: "Firefox", "Chrome", "IE"  -->
     <!-- Driver parameter values: "RemoteFirefox", "RemoteChrome", "IE"  -->
-    <parameter name="Driver" value="RemoteChrome"/>
+    <parameter name="Driver" value="Chrome"/>
     <parameter name="RemoteDriverURL" value="http://10.74.211.164:4444/wd/hub"/>
 
 
     <!-- REGRESSION -->
 
-    <!--<test name="Add datasource _ rimse01-pc3 (CAPM 3.2)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc3:8181" />-->
-        <!--<parameter name="dataAggregator" value="rimse01-da3" />-->
-        <!--<groups> <run>-->
-            <!--<include name="AddDataAggregator"/>-->
-        <!--</run></groups>-->
-        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
-    <!--</test>-->
-
-    <test name="Assign Data Collector _ rimse01-pc-dev (CAPM DEV)">
-        <parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181" />
+    <test name="Add datasource _ rimse01-pc3 (CAPM 3.2)">
+        <parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181" />
+        <parameter name="dataAggregator" value="rimse01-L21200.lvn.broadcom.net" />
         <groups> <run>
-            <include name="AssignDataCollector"/>
+            <include name="AddDataAggregator"/>
         </run></groups>
         <classes> <class name="capm.TestCase2" /> </classes>
     </test>
+
+    <!--<test name="Assign Data Collector _ rimse01-pc-dev (CAPM DEV)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="AssignDataCollector"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
 
 
 

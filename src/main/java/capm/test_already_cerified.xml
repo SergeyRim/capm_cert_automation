@@ -17,34 +17,11 @@
 
 
     <parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>
-    <parameter name="simIDs" value="public:33487"/>
-
-
-    <test name="Create/Modify Monitoring Profile For Already Certified US =PM3.5">
-        <parameter name="capcServer" value="http://rimse01-pc35.bluesky.ca.com:8181"/>
-        <parameter name="readmeFile" value="d:\CAPM\mf.txt"/>
-        <parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>
-        <groups><run>
-            <include name="CreateModifyMPAlreadyCertified"/>
-        </run></groups>
-        <classes>
-            <class name="capm.TestCase2"/>
-        </classes>
-    </test>
-
-    <!--<test name="Create/Modify Discovery Profile For Already Certified US =PM3.5">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc35.bluesky.ca.com:8181"/>-->
-        <!--<groups><run>-->
-            <!--<include name="CreateModifyDP"/>-->
-        <!--</run></groups>-->
-        <!--<classes>-->
-            <!--<class name="capm.TestCase2"/>-->
-        <!--</classes>-->
-    <!--</test>-->
+    <parameter name="simIDs" value="public:33786"/>
 
 
     <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.6">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc36.bluesky.ca.com:8181"/>-->
+        <!--<parameter name="capcServer" value="http://rimse01-L23501.lvn.broadcom.net:8181"/>-->
         <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt"/>-->
         <!--<parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>-->
         <!--<groups><run>-->
@@ -56,7 +33,7 @@
     <!--</test>-->
 
     <!--<test name="Create/Modify Discovery Profile For Already Certified US =PM3.6">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc36.bluesky.ca.com:8181"/>-->
+        <!--<parameter name="capcServer" value="http://rimse01-L23501.lvn.broadcom.net:8181"/>-->
         <!--<groups><run>-->
             <!--<include name="CreateModifyDP"/>-->
         <!--</run></groups>-->
@@ -66,8 +43,32 @@
     <!--</test>-->
 
 
+    <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.7">-->
+        <!--<parameter name="capcServer" value="http://rimse01-L21955.lvn.broadcom.net:8181"/>-->
+        <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt"/>-->
+        <!--<parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>-->
+        <!--<groups><run>-->
+            <!--<include name="CreateModifyMPAlreadyCertified"/>-->
+        <!--</run></groups>-->
+        <!--<classes>-->
+            <!--<class name="capm.TestCase2"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--<test name="Create/Modify Discovery Profile For Already Certified US =PM3.7">-->
+        <!--<parameter name="capcServer" value="http://rimse01-L21955.lvn.broadcom.net:8181"/>-->
+        <!--<groups><run>-->
+            <!--<include name="CreateModifyDP"/>-->
+        <!--</run></groups>-->
+        <!--<classes>-->
+            <!--<class name="capm.TestCase2"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+    <!---->
+
+
     <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM DEV">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181"/>-->
+        <!--<parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181"/>-->
         <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt"/>-->
         <!--<parameter name="MonitoringDiscoveryProfileName" value="QA2_certified"/>-->
         <!--<groups><run>-->
@@ -79,7 +80,7 @@
     <!--</test>-->
 
     <!--<test name="Create/Modify Discovery Profile For Already Certified US =PM DEV">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181"/>-->
+        <!--<parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181"/>-->
         <!--<groups><run>-->
             <!--<include name="CreateModifyDP"/>-->
         <!--</run></groups>-->
@@ -94,12 +95,12 @@
     <!--=========================-->
 
     <parameter name="readmeFile" value="d:\CAPM\mf.txt" />
-    <parameter name="deviceName" value="10.74.211.164" />
+    <parameter name="deviceName" value="Sim33786" />
     <parameter name="outputDir" value="d:\Automation" />
 
 
-    <!--<test name="Verify VCs and components For Already Certified US =PM3.5">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc35.bluesky.ca.com:8181" />-->
+    <!--<test name="Verify VCs and components For Already Certified US =PM3.6">-->
+        <!--<parameter name="capcServer" value="http://rimse01-L23501.lvn.broadcom.net:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="VerifyVCandComponentsAlreadyCertified"/>-->
         <!--</run></groups>-->
@@ -107,8 +108,8 @@
     <!--</test>-->
 
 
-    <!--<test name="Verify VCs and components For Already Certified US =PM3.6">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc36.bluesky.ca.com:8181" />-->
+    <!--<test name="Verify VCs and components For Already Certified US =PM3.7">-->
+        <!--<parameter name="capcServer" value="http://rimse01-L21955.lvn.broadcom.net:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="VerifyVCandComponentsAlreadyCertified"/>-->
         <!--</run></groups>-->
@@ -117,7 +118,7 @@
 
 
     <!--<test name="Verify VCs and components For Already Certified US =PM DEV">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181" />-->
+        <!--<parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="VerifyVCandComponentsAlreadyCertified"/>-->
         <!--</run></groups>-->
@@ -128,16 +129,17 @@
     <!-- POST steps -->
     <!-- DELETE DISCOVERED DEVICES -->
 
-    <!--<test name="Delete Discovered Devices _rimse01-pc1 (CAPM 3.5)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc35.bluesky.ca.com:8181" />-->
+
+    <!--<test name="Delete Discovered Devices _rimse01-pc2 (CAPM 3.6)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-L23501.lvn.broadcom.net:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="DeleteDiscoveredDevices"/>-->
         <!--</run></groups>-->
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
     <!--</test>-->
 
-    <!--<test name="Delete Discovered Devices _rimse01-pc2 (CAPM 3.6)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc36.bluesky.ca.com:8181" />-->
+    <!--<test name="Delete Discovered Devices _rimse01-pc1 (CAPM 3.7)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-L21955.lvn.broadcom.net:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="DeleteDiscoveredDevices"/>-->
         <!--</run></groups>-->
@@ -145,7 +147,7 @@
     <!--</test>-->
 
      <!--<test name="Delete Discovered Devices _rimse01-pc3 (CAPM DEV)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-pc-dev.bluesky.ca.com:8181" />-->
+        <!--<parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181" />-->
         <!--<groups> <run>-->
             <!--<include name="DeleteDiscoveredDevices"/>-->
         <!--</run></groups>-->

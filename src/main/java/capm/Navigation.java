@@ -146,35 +146,17 @@ public class Navigation {
 
 	public Boolean selectDataSources () throws InterruptedException {
 
-		while (driver.findElements(By.id("menuId6")).size()<1)
-			Thread.sleep(1000);
-
 		int tryNum=0;
 		int maxNumberToTry=15;
+		Thread.sleep(4000);
 
 		boolean isClicked;
 		do {
 			try {
 				isClicked=true;
-				WebElement admintab = driver.findElement(By.xpath("//h2[contains(.,'Administration')]"));
-
-				Actions action = new Actions(driver);
-				action.moveToElement(admintab).perform();
-				Thread.sleep(500);
-
-				//WebElement dalink = getWebElement("//a[contains(text(),'Data Aggregator@')]");
-				WebElement dalink = driver.findElement(By.xpath(("//a[text()='Data Sources']")));
-
-				Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
-				String browserName = cap.getBrowserName().toLowerCase();
-				if (browserName.equals("chrome")) {
-					//Alternative click
-					JavascriptExecutor executor = (JavascriptExecutor)driver;
-					executor.executeScript("arguments[0].click();", dalink);
-				} else {
-					dalink.click();
-				}
-
+				driver.findElement(By.xpath("//button[text()='Administration']")).click();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[starts-with(text(),'Data Sources')]")));
+				driver.findElement(By.xpath("//a[starts-with(text(),'Data Sources')]")).click();
 			} catch (Exception e) {
 				isClicked=false;
 				tryNum++;
@@ -196,10 +178,8 @@ public class Navigation {
 	}
 
 	public Boolean selectDataAggregator() throws InterruptedException {
-		
-		//while (driver.findElements(By.id("globalSearchField")).size()<1)
-		Thread.sleep(1000);
 
+		Thread.sleep(1000);
 		int tryNum=0;
 		int maxNumberToTry=15;
 		Thread.sleep(3000);
@@ -267,6 +247,12 @@ public class Navigation {
 		WebElement monitoringConfiguration = getWebElement("//span[text()='Monitoring Configuration']");
 		monitoringConfiguration.click();
 		Thread.sleep(500);
+
+		log.debug("Move mouse from Monitoring Configuration link to avoid popup text.");
+		Actions builder = new Actions(driver);
+		builder.moveToElement(monitoringConfiguration,300,300).build().perform();
+		Thread.sleep(500);
+
 		WebElement monitoringProfiles = getWebElement("//span[text()='Monitoring Profiles']");
 		monitoringProfiles.click();
 		Thread.sleep(500);

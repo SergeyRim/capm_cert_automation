@@ -41,6 +41,7 @@ public class OnDemand {
         navi.protectedClick("//button[text()='Import']","Unable to click on Import button");
         Thread.sleep(500);
 
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//input[@class='x-form-file']")));
         WebElement upload = driver.findElement(By.xpath("//input[@class='x-form-file']"));
         upload.sendKeys(ondemandLocation);
         Thread.sleep(500);
