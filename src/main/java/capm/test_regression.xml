@@ -8,7 +8,7 @@
     <!-- Global parameters -->
     <!-- Driver parameter values: "Firefox", "Chrome", "IE"  -->
     <!-- Driver parameter values: "RemoteFirefox", "RemoteChrome", "IE"  -->
-    <parameter name="Driver" value="Chrome"/>
+    <parameter name="Driver" value="RemoteChrome"/>
     <parameter name="RemoteDriverURL" value="http://10.74.211.164:4444/wd/hub"/>
 
 
