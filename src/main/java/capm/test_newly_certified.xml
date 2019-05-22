@@ -10,9 +10,10 @@
     <!-- logLevel parameter values: "INFO", "DEBUG", "ERROR"                                    -->
     <parameter name="logLevel" value="INFO"/>
     <parameter name="Driver" value="RemoteChrome"/>
-    <!--<parameter name="RemoteDriverURL" value="http://10.162.5.194:4444/wd/hub"/>-->
     <parameter name="RemoteDriverURL" value="http://10.74.211.164:4444/wd/hub"/>
 
+    <parameter name="PMF_User" value="rimse01"/>
+    <parameter name="PMF_Password" value="6MiniBar42"/>
 
 
     <!-- NEWLY ADDED VC US -->
@@ -56,7 +57,7 @@
     <!-- APPLY ON-DEMAND AND VERIFY MF/VC VERSION CHANGE -->
     <!-- =================================================== -->
 
-    <parameter name="ondemandLocation" value="d:\CAPM\DE410696_Bluecoat_SG9000_CapitalOne.zip" />
+    <parameter name="ondemandLocation" value="d:\CAPM\DE414073_Juniper.zip" />
 
     <!--<test name="Upload on-demand and verify MF/VC Version change (CAPM 3.6)">-->
         <!--<parameter name="capcServer" value="http://rimse01-L23501.lvn.broadcom.net:8181" />-->
@@ -84,7 +85,7 @@
     <!-- CHANGE VENDOR PRIORITY, CREATE MONITORING AND DISCOVER PROFILES -->
     <!-- =================================================== -->
 
-    <parameter name="simIDs" value="public:21388" />
+    <parameter name="simIDs" value="public:33887" />
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
     <parameter name="MonitoringDiscoveryProfileName" value="QA2" />
 
@@ -105,7 +106,7 @@
         <!--</run></groups>-->
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
     <!--</test>-->
-    <!---->
+
 
     <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM 3.7)">-->
         <!--<parameter name="capcServer" value="http://rimse01-L21955.lvn.broadcom.net:8181" />-->
@@ -125,22 +126,22 @@
     <!--</test>-->
 
 
-    <test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM DEV)">
-        <parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181" />
-        <groups> <run>
-            <include name="CreateModifyMP"/>
-            <include name="ChangeVP"/>
-        </run></groups>
-        <classes> <class name="capm.TestCase2" /> </classes>
-    </test>
+    <!--<test name="Change Vendor Priority and Create/Modify Monitoring Profile (CAPM DEV)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="CreateModifyMP"/>-->
+            <!--<include name="ChangeVP"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
 
-    <test name="Create/Modify Discovery Profile (CAPM DEV)">
-        <parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181" />
-        <groups> <run>
-            <include name="CreateModifyDP"/>
-        </run></groups>
-        <classes> <class name="capm.TestCase2" /> </classes>
-    </test>
+    <!--<test name="Create/Modify Discovery Profile (CAPM DEV)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="CreateModifyDP"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
 
 
     <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.7">-->
@@ -163,7 +164,7 @@
     <!-- reportType parameter values: "legacy" or "device" -->
 
 
-    <parameter name="deviceName" value="Sim21388" />
+    <parameter name="deviceName" value="Sim33887" />
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
     <parameter name="reportType" value="Legacy" />
     <parameter name="outputDir" value="d:\Automation" />
@@ -179,7 +180,7 @@
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
     <!--</test>-->
 
-    <!---->
+
     <!--<test name="Create custom report _(CAPM 3.7)">-->
         <!--<parameter name="capcServer" value="http://rimse01-L21955.lvn.broadcom.net:8181" />-->
         <!--<parameter name="daServer" value="rimse01-L21954.lvn.broadcom.net" />-->
@@ -201,8 +202,8 @@
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
     <!--</test>-->
 
-    <!---->
-    <!---->
+
+
     <!--<test name="Verify VCs and components For Already Certified US =PM3.7">-->
         <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt" />-->
         <!--<parameter name="capcServer" value="http://rimse01-L21955.lvn.broadcom.net:8181" />-->

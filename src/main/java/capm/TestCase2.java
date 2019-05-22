@@ -34,8 +34,8 @@ import org.testng.annotations.*;
 @Listeners({ScreenshotListener.class})
 public class TestCase2 {
 
-	String version = "5.1.7";
-	String build = "15052019";
+	String version = "5.1.8";
+	String build = "22052019";
 
 	private static final Logger log = LogManager.getLogger("MainTest");
 	RemoteWebDriver driver;
@@ -190,14 +190,14 @@ public class TestCase2 {
 	
 	
 	@Test(description="Create/Modify Discovery Profile", groups = {"CreateModifyDP"})
-	@Parameters({"simIDs","capcServer","MonitoringDiscoveryProfileName"})
-	public void createModifyDP(String simIDs, String capcServer, String MonitoringDiscoveryProfileName) throws Exception {
+	@Parameters({"simIDs","capcServer","MonitoringDiscoveryProfileName","PMF_User","PMF_Password"})
+	public void createModifyDP(String simIDs, String capcServer, String MonitoringDiscoveryProfileName, @Optional ("nhuser") String username, @Optional ("1QAZ2wsx") String password) throws Exception {
 				
 		log.info("Host: "+capcServer);
 		Simdepot sim = new Simdepot(driver);
 		DiscoveryProfiles dp = new DiscoveryProfiles(driver);
-				
-		driver.get("http://nhuser:1QAZ2wsx@simdepot.ca.com");
+
+		driver.get("http://"+username+":"+password+"@simdepot.ca.com");
 		
 		String[] sims = simIDs.split(",");
 		ArrayList<String> ips = sim.getSimIP(sims);
