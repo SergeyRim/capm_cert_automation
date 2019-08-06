@@ -40,7 +40,7 @@ public class BasePage {
     By dataAggregator = By.xpath("//span[starts-with(text(),'Data Aggregator@')]");
 
 
-    public void navigateToDataAggregator () throws InterruptedException {
+    public void navigateToDataAggregator () {
         Actions action = new Actions(driver);
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(administration));
         action.moveToElement(driver.findElement(administration)).perform();
@@ -51,7 +51,7 @@ public class BasePage {
     }
 
 
-    public void navigateToDataSources () throws InterruptedException {
+    public void navigateToDataSources () {
         Actions action = new Actions(driver);
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(administration));
         action.moveToElement(driver.findElement(administration)).perform();
