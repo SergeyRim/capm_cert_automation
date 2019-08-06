@@ -71,6 +71,7 @@ public class DataSourcesPage extends BasePage {
             wait.until(ExpectedConditions.elementToBeClickable(okButton));
             driver.findElement(okButton).click();
 
+            Thread.sleep(100);
             wait.until(ExpectedConditions.elementToBeClickable(saveButton));
             driver.findElement(saveButton).click();
 
