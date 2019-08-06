@@ -1,6 +1,5 @@
 package capm;
 
-import Pages.NavigationPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -31,7 +30,7 @@ public class MonitoringProfiles {
 		Actions action = new Actions (driver);
 		
 		Navigation navi = new Navigation (driver);
-		NavigationPage navigationPage = PageFactory.initElements(driver, NavigationPage.class);
+		//NavigationPage navigationPage = PageFactory.initElements(driver, NavigationPage.class);
 
 		navi.selectDataAggregator();
 		//navigationPage.navigateToDataAggregator();

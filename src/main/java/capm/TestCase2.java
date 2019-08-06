@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import Pages.DataSourcesPage;
+import Pages.DiscoveryProfilesPage;
 import Pages.LoginPage;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -34,8 +36,8 @@ import org.testng.annotations.*;
 @Listeners({ScreenshotListener.class})
 public class TestCase2 {
 
-	String version = "5.1.8";
-	String build = "22052019";
+	String version = "5.1.9";
+	String build = "06082019";
 
 	private static final Logger log = LogManager.getLogger("MainTest");
 	RemoteWebDriver driver;
@@ -192,32 +194,76 @@ public class TestCase2 {
 	@Test(description="Create/Modify Discovery Profile", groups = {"CreateModifyDP"})
 	@Parameters({"simIDs","capcServer","MonitoringDiscoveryProfileName","PMF_User","PMF_Password"})
 	public void createModifyDP(String simIDs, String capcServer, String MonitoringDiscoveryProfileName, @Optional ("nhuser") String username, @Optional ("1QAZ2wsx") String password) throws Exception {
-				
+
 		log.info("Host: "+capcServer);
 		Simdepot sim = new Simdepot(driver);
 		DiscoveryProfiles dp = new DiscoveryProfiles(driver);
 
 		driver.get("http://"+username+":"+password+"@simdepot.ca.com");
-		
+
 		String[] sims = simIDs.split(",");
 		ArrayList<String> ips = sim.getSimIP(sims);
-		
+
 		if (ips==null) {
 			log.fatal("No IP addresses got from simdepot. Stopping.");
 			return;
 		}
-				
+
 		driver.get(capcServer);
 		LoginPage loginpage = PageFactory.initElements(driver,LoginPage.class);
 		loginpage.enterUsername("admin");
 		loginpage.enterPassword("admin");
 		loginpage.logIn();
-		
-		Assert.assertTrue(dp.editDiscoveryProfiles(MonitoringDiscoveryProfileName, ips));
-	
+
+		//Assert.assertTrue(dp.editDiscoveryProfiles(MonitoringDiscoveryProfileName, ips));
+
+		DiscoveryProfilesPage dpp = new DiscoveryProfilesPage(driver);
+		dpp.navigateToDataAggregator();
+		dpp.gotoDiscoveryProfiles();
+		Assert.assertTrue (dpp.editDiscoveryProfiles(MonitoringDiscoveryProfileName, ips));
+
 	}
-	
-	
+
+
+	//THIS IS TEST METHOD
+	@Test(description="Create/Modify Discovery Profile", groups = {"CreateModifyDP1"})
+	@Parameters({"simIDs","capcServer","MonitoringDiscoveryProfileName","PMF_User","PMF_Password"})
+	public void createModifyDPtest(String simIDs, String capcServer, String MonitoringDiscoveryProfileName, @Optional ("nhuser") String username, @Optional ("1QAZ2wsx") String password) throws Exception {
+
+		log.info("Host: "+capcServer);
+		Simdepot sim = new Simdepot(driver);
+		DiscoveryProfiles dp = new DiscoveryProfiles(driver);
+
+		//driver.get("http://"+username+":"+password+"@simdepot.ca.com");
+
+		String[] sims = simIDs.split(",");
+		//ArrayList<String> ips = sim.getSimIP(sims);
+		ArrayList<String> ips = new ArrayList();
+		ips.add("192.168.1.1");
+
+		if (ips==null) {
+			log.fatal("No IP addresses got from simdepot. Stopping.");
+			return;
+		}
+
+		driver.get(capcServer);
+		LoginPage loginpage = PageFactory.initElements(driver,LoginPage.class);
+		loginpage.enterUsername("admin");
+		loginpage.enterPassword("admin");
+		loginpage.logIn();
+
+		//Assert.assertTrue(dp.editDiscoveryProfiles(MonitoringDiscoveryProfileName, ips));
+
+		//DiscoveryProfilesPage dpp = PageFactory.initElements(driver,DiscoveryProfilesPage.class);
+		DiscoveryProfilesPage dpp = new DiscoveryProfilesPage(driver);
+		dpp.navigateToDataAggregator();
+		dpp.gotoDiscoveryProfiles();
+		dpp.editDiscoveryProfiles(MonitoringDiscoveryProfileName, ips);
+
+	}
+
+
+
 	@Test(description="Delete Discovered Devices", groups = {"DeleteDiscoveredDevices"})
 	@Parameters({"capcServer"})
 	public void deleteDiscoveredDevices (String capcServer) throws Exception {
@@ -424,7 +470,11 @@ public class TestCase2 {
 		loginpage.enterPassword("admin");
 		loginpage.logIn();;
 
-		Assert.assertTrue(regTest.addDataSource(dataAggregator));
+		//Assert.assertTrue(regTest.addDataSource(dataAggregator));
+		DataSourcesPage dsp = new DataSourcesPage(driver);
+		dsp.navigateToDataSources();
+		Assert.assertTrue(dsp.addDataAggreagtor(dataAggregator));
+
 
 	}
 

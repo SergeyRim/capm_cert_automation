@@ -9,11 +9,11 @@
     <!-- Driver parameter values: "Firefox", "Chrome", "IE" OR "RemoteFirefox", "RemoteChrome"  -->
     <!-- logLevel parameter values: "INFO", "DEBUG", "ERROR"                                    -->
     <parameter name="logLevel" value="INFO"/>
-    <parameter name="Driver" value="RemoteChrome"/>
+    <parameter name="Driver" value="Chrome"/>
     <parameter name="RemoteDriverURL" value="http://10.74.211.164:4444/wd/hub"/>
 
     <parameter name="PMF_User" value="rimse01"/>
-    <parameter name="PMF_Password" value="6MiniBar42"/>
+    <parameter name="PMF_Password" value="6MiniBar43"/>
 
 
     <!-- NEWLY ADDED VC US -->
@@ -57,7 +57,7 @@
     <!-- APPLY ON-DEMAND AND VERIFY MF/VC VERSION CHANGE -->
     <!-- =================================================== -->
 
-    <parameter name="ondemandLocation" value="d:\CAPM\DE414073_Juniper.zip" />
+    <parameter name="ondemandLocation" value="d:\CAPM\On-demand_US604121.zip" />
 
     <!--<test name="Upload on-demand and verify MF/VC Version change (CAPM 3.6)">-->
         <!--<parameter name="capcServer" value="http://rimse01-L23501.lvn.broadcom.net:8181" />-->
@@ -85,7 +85,7 @@
     <!-- CHANGE VENDOR PRIORITY, CREATE MONITORING AND DISCOVER PROFILES -->
     <!-- =================================================== -->
 
-    <parameter name="simIDs" value="public:33887" />
+    <parameter name="simIDs" value="public:34130" />
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
     <parameter name="MonitoringDiscoveryProfileName" value="QA2" />
 
@@ -144,6 +144,7 @@
     <!--</test>-->
 
 
+
     <!--<test name="Create/Modify Monitoring Profile For Already Certified US =PM3.7">-->
         <!--<parameter name="capcServer" value="http://rimse01-L21955.lvn.broadcom.net:8181"/>-->
         <!--<parameter name="readmeFile" value="d:\CAPM\mf.txt"/>-->
@@ -157,6 +158,16 @@
     <!--</test>-->
 
 
+
+    <!--<test name="Create/Modify Discovery Profile (CAPM DEV)">-->
+        <!--<parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181" />-->
+        <!--<groups> <run>-->
+            <!--<include name="CreateModifyDP1"/>-->
+        <!--</run></groups>-->
+        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
+    <!--</test>-->
+
+
     <!-- =================================================== -->
     <!-- CREATE REPORTS -->
     <!-- =================================================== -->
@@ -164,10 +175,11 @@
     <!-- reportType parameter values: "legacy" or "device" -->
 
 
-    <parameter name="deviceName" value="Sim33887" />
+    <parameter name="deviceName" value="Sim34130" />
     <parameter name="readmeFile" value="d:\CAPM\readme.txt" />
-    <parameter name="reportType" value="Legacy" />
+    <parameter name="reportType" value="Device" />
     <parameter name="outputDir" value="d:\Automation" />
+
 
 
     <!--<test name="Create custom report (CAPM 3.6)">-->
@@ -222,7 +234,7 @@
 
     <!--<test name="Delete Discovered Devices (CAPM 3.6)">-->
         <!--<parameter name="capcServer" value="http://rimse01-L23501.lvn.broadcom.net:8181" />-->
-        <!--<groups> <run>-->
+            <!--<groups> <run>-->
             <!--<include name="DeleteDiscoveredDevices"/>-->
         <!--</run></groups>-->
         <!--<classes> <class name="capm.TestCase2" /> </classes>-->
