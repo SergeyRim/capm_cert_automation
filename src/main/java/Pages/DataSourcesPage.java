@@ -81,7 +81,7 @@ public class DataSourcesPage extends BasePage {
             //Wait while DA string will appears
             wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[text()='Data Aggregator@"+dataAggregator+"']")));
 
-            return waitForDaBecameAvailable();
+            return waitForDaBecameAvailable(dataAggregator);
 
         } else {
             log.fatal("Failed to test Data Aggregator. Unexpected return code.");
@@ -90,7 +90,7 @@ public class DataSourcesPage extends BasePage {
     }
 
 
-    private Boolean waitForDaBecameAvailable () throws java.lang.InterruptedException {
+    private Boolean waitForDaBecameAvailable (String dataAggregator) throws java.lang.InterruptedException {
         int waitForDa = 18;
         //Wait while current status
         int waitNum=0;
@@ -111,9 +111,8 @@ public class DataSourcesPage extends BasePage {
             } catch (Exception e) {
                 log.warn("WARN: Unable to get current DA status. Retrying.");
                 waitNum++;
-                if (waitNum > waitForDa) {
+                if (waitNum > waitForDa)
                     isStatusChecked=true;
-                }
                 Thread.sleep(1000);
             }
         }

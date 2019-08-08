@@ -36,8 +36,8 @@ import org.testng.annotations.*;
 @Listeners({ScreenshotListener.class})
 public class TestCase2 {
 
-	String version = "5.1.9";
-	String build = "06082019";
+	String version = "5.1.10";
+	String build = "08082019";
 
 	private static final Logger log = LogManager.getLogger("MainTest");
 	RemoteWebDriver driver;

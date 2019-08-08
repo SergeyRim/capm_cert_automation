@@ -23,13 +23,13 @@
         <classes> <class name="capm.TestCase2" /> </classes>
     </test>
 
-    <!--<test name="Assign Data Collector _ rimse01-pc-dev (CAPM DEV)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181" />-->
-        <!--<groups> <run>-->
-            <!--<include name="AssignDataCollector"/>-->
-        <!--</run></groups>-->
-        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
-    <!--</test>-->
+    <test name="Assign Data Collector _ rimse01-pc-dev (CAPM DEV)">
+        <parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181" />
+        <groups> <run>
+            <include name="AssignDataCollector"/>
+        </run></groups>
+        <classes> <class name="capm.TestCase2" /> </classes>
+    </test>
 
 
 
