@@ -96,11 +96,11 @@ public class DataSourcesPage extends BasePage {
         int waitNum=0;
         Boolean isStatusChecked=false;
 
-        String currentDAStatus = null;
+        String currentDAStatus;
         while (!isStatusChecked) {
             try {
+                currentDAStatus = driver.findElement(By.xpath("//div[text()='Data Aggregator@"+dataAggregator+"']/../../td[2]/div")).getText();
                 while (!currentDAStatus.equals("Available") && waitNum <= waitForDa) {
-                    currentDAStatus = driver.findElement(By.xpath("//div[text()='Data Aggregator@"+dataAggregator+"']/../../td[2]/div")).getText();
                     log.info("Current DA status is \""+currentDAStatus+"\". Waiting for update.");
                     driver.navigate().refresh();
                     Thread.sleep(10000);
@@ -111,10 +111,13 @@ public class DataSourcesPage extends BasePage {
             } catch (Exception e) {
                 log.warn("WARN: Unable to get current DA status. Retrying.");
                 waitNum++;
+                if (waitNum > waitForDa) {
+                    isStatusChecked=true;
+                }
                 Thread.sleep(1000);
             }
         }
-        if (waitNum==waitForDa) {
+        if (waitNum>=waitForDa) {
             log.fatal("Timedout waiting for DA to be available.");
             return false;
         } else {
