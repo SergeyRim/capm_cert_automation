@@ -91,16 +91,16 @@ public class DataSourcesPage extends BasePage {
 
 
     private Boolean waitForDaBecameAvailable () throws java.lang.InterruptedException {
-        int waitForDa = 180;
+        int waitForDa = 18;
         //Wait while current status
         int waitNum=0;
         Boolean isStatusChecked=false;
 
-        String currentDAStatus;
+        String currentDAStatus = null;
         while (!isStatusChecked) {
             try {
-                currentDAStatus = driver.findElement(By.xpath("//div[text()='Data Aggregator@"+dataAggregator+"']/../../td[2]/div")).getText();
                 while (!currentDAStatus.equals("Available") && waitNum <= waitForDa) {
+                    currentDAStatus = driver.findElement(By.xpath("//div[text()='Data Aggregator@"+dataAggregator+"']/../../td[2]/div")).getText();
                     log.info("Current DA status is \""+currentDAStatus+"\". Waiting for update.");
                     driver.navigate().refresh();
                     Thread.sleep(10000);
