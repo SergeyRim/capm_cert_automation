@@ -90,7 +90,7 @@ public class DataSourcesPage extends BasePage {
     }
 
 
-    private Boolean waitForDaBecameAvailable () {
+    private Boolean waitForDaBecameAvailable () throws java.lang.InterruptedException {
         int waitForDa = 180;
         //Wait while current status
         int waitNum=0;
@@ -110,7 +110,8 @@ public class DataSourcesPage extends BasePage {
                 isStatusChecked=true;
             } catch (Exception e) {
                 log.warn("WARN: Unable to get current DA status. Retrying.");
-
+                waitNum++;
+                Thread.sleep(1000);
             }
         }
         if (waitNum==waitForDa) {

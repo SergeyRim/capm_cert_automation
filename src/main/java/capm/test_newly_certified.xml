@@ -9,7 +9,7 @@
     <!-- Driver parameter values: "Firefox", "Chrome", "IE" OR "RemoteFirefox", "RemoteChrome"  -->
     <!-- logLevel parameter values: "INFO", "DEBUG", "ERROR"                                    -->
     <parameter name="logLevel" value="INFO"/>
-    <parameter name="Driver" value="Chrome"/>
+    <parameter name="Driver" value="RemoteChrome"/>
     <parameter name="RemoteDriverURL" value="http://10.74.211.164:4444/wd/hub"/>
 
     <parameter name="PMF_User" value="rimse01"/>
@@ -157,15 +157,6 @@
         <!--</classes>-->
     <!--</test>-->
 
-
-
-    <!--<test name="Create/Modify Discovery Profile (CAPM DEV)">-->
-        <!--<parameter name="capcServer" value="http://rimse01-L21201.lvn.broadcom.net:8181" />-->
-        <!--<groups> <run>-->
-            <!--<include name="CreateModifyDP1"/>-->
-        <!--</run></groups>-->
-        <!--<classes> <class name="capm.TestCase2" /> </classes>-->
-    <!--</test>-->
 
 
     <!-- =================================================== -->
